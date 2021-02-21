@@ -1,0 +1,44 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Unit1.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+#include "Plane.h"
+TForm1 *Form1;
+
+//plane a(50,100,180,130);
+chassis a(10,100,180,130);
+int nomer;
+//---------------------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+   Timer1->Enabled=true;
+   nomer=0;
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Timer1Timer(TObject *Sender)
+{
+if (nomer==0) {
+a.move(Canvas);
+}else
+{
+a.moveDown(Canvas);
+}
+
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Button2Click(TObject *Sender)
+{
+Timer1->Enabled=true;
+nomer=1;
+}
+//---------------------------------------------------------------------------

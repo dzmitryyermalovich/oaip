@@ -1,0 +1,71 @@
+//---------------------------------------------------------------------------
+
+#ifndef FigureH
+#define FigureH
+//---------------------------------------------------------------------------
+#endif
+#include<math.h>
+class figure
+{
+public:
+
+virtual double showSquare();
+
+};
+
+class cirk:public figure
+{
+protected:
+double r;
+double s;
+
+public:
+
+   //	cirk(double r)
+	//{
+	 //  this->r=r;
+	//}
+
+	void get(double r)
+	{
+	 this->r=r;
+	}
+
+	double showSquare()
+	{
+		   s=3.14*r*r;
+		   return s;
+	}
+
+
+};
+
+class rectangle:figure
+{
+
+protected:
+double a,b;
+double s;
+
+public:
+
+	//rectangle(double a,double b)
+	//{
+	 //  this->a=a;
+	  // this->b=b;
+	//}
+
+	void get(double a,double b)
+	{
+     this->a=a;
+	 this->b=b;
+	}
+
+	double showSquare()
+	{
+		   s=a*b;
+		   return s;
+	}
+
+
+};
