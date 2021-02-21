@@ -39,8 +39,8 @@ object Form1: TForm1
   object RadioGroup2: TRadioGroup
     Left = 560
     Top = 296
-    Width = 185
-    Height = 177
+    Width = 145
+    Height = 113
     Caption = #1044#1077#1081#1089#1090#1074#1080#1077
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -70,7 +70,7 @@ object Form1: TForm1
   end
   object RadioButton3: TRadioButton
     Left = 584
-    Top = 328
+    Top = 336
     Width = 113
     Height = 17
     Caption = #1053#1072#1081#1090#1080' '#1087#1083#1086#1097#1072#1076#1100
@@ -83,32 +83,5 @@ object Form1: TForm1
     Width = 185
     Height = 41
     TabOrder = 5
-  end
-  object RadioButton4: TRadioButton
-    Left = 584
-    Top = 440
-    Width = 113
-    Height = 17
-    Caption = #1054#1090#1084#1077#1085#1072
-    TabOrder = 6
-    OnClick = RadioButton4Click
-  end
-  object RadioButton5: TRadioButton
-    Left = 584
-    Top = 361
-    Width = 113
-    Height = 17
-    Caption = #1055#1077#1088#1080#1084#1077#1090#1088
-    TabOrder = 7
-    OnClick = RadioButton5Click
-  end
-  object RadioButton6: TRadioButton
-    Left = 584
-    Top = 401
-    Width = 113
-    Height = 17
-    Caption = #1062#1077#1085#1090#1088' '#1084#1072#1089#1089
-    TabOrder = 8
-    OnClick = RadioButton6Click
   end
 end

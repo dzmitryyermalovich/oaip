@@ -5,7 +5,6 @@
 //---------------------------------------------------------------------------
 #endif
 #include<math.h>
-#include<vcl.h>
 class figure
 {
 public:
@@ -18,9 +17,8 @@ class cirk
 {
 protected:
 double r;
-double s,p;
-double xc,yc;
-double X1,Y1,X2,Y2;
+double s;
+
 public:
 
    //	cirk(double r)
@@ -28,32 +26,15 @@ public:
 	 //  this->r=r;
 	//}
 
-	void get(double X1,double Y1,double X2,double Y2)
+	void get(double r)
 	{
-	this->X1=X1;
-	this->Y1=Y1;
-	this->X2=X2;
-	this->Y2=Y2;
-	this->r=sqrt(pow((Y2-Y1),2)+pow((X2-X1),2));
+	 this->r=r;
 	}
 
 	double showSquare()
 	{
 		   s=3.14*r*r;
 		   return s;
-	}
-
-	double showPerimetr()
-	{
-		   p=2*3.14*r;
-		   return p;
-	}
-
-    void showCenterMass()
-	{
-	  xc=X1;
-	  yc=Y1;
-
 	}
 
 
@@ -64,9 +45,8 @@ class rectangle
 
 protected:
 double a,b;
-double s,p;
-double xc,yc;
-double X1,Y1,X2,Y2;
+double s;
+
 public:
 
 	//rectangle(double a,double b)
@@ -75,14 +55,10 @@ public:
 	  // this->b=b;
 	//}
 
-	void get(double X1,double Y1,double X2,double Y2)
+	void get(double a,double b)
 	{
-	a=abs(X1-X2);
-	b=abs(Y1-Y2);
-	this->X1=X1;
-	this->X2=X2;
-	this->Y1=Y1;
-	this->Y2=Y2;
+	 this->a=a;
+	 this->b=b;
 	}
 
 	double showSquare()
@@ -91,17 +67,5 @@ public:
 		   return s;
 	}
 
-		double showPerimetr()
-	{
-		   p=2*(a+b);
-		   return p;
-	}
-
-	void showCenterMass()
-	{
-	  xc=(X1+X2)/2;
-	  yc=(Y1+Y2)/2;
-
-	}
 
 };

@@ -49,13 +49,6 @@ public:
 		   return p;
 	}
 
-    void showCenterMass()
-	{
-	  xc=X1;
-	  yc=Y1;
-
-	}
-
 
 };
 
