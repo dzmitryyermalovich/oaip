@@ -13,9 +13,17 @@ class TForm1 : public TForm
 {
 __published:	// IDE-managed Components
 	TImage *Image1;
+	TRadioGroup *RadioGroup1;
+	TRadioGroup *RadioGroup2;
+	TRadioButton *RadioButton1;
+	TRadioButton *RadioButton2;
+	TRadioButton *RadioButton3;
 	TPanel *Panel1;
+	TRadioButton *RadioButton4;
+	TRadioButton *RadioButton5;
+	TRadioButton *RadioButton6;
+	TRadioButton *RadioButton7;
 	TRadioGroup *RadioGroup3;
-	TRadioGroup *RadioGroup4;
 	void __fastcall Image1MouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
           int X, int Y);
 	void __fastcall FormCreate(TObject *Sender);

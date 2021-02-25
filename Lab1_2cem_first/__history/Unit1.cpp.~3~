@@ -11,9 +11,8 @@
 TForm1 *Form1;
 
 //plane a(50,100,180,130);
-chassis a(50,100,220,130);
+chassis a(10,100,180,130);
 int nomer;
-int metka=0;
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
 	: TForm(Owner)
@@ -28,11 +27,11 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Timer1Timer(TObject *Sender)
 {
-if (nomer==0&&metka==0) {
+if (nomer==0) {
 a.move(Canvas);
 }else
 {
-a.moveDown(Canvas);
+a.moveDown(Canvas)
 }
 
 }
@@ -41,6 +40,5 @@ void __fastcall TForm1::Button2Click(TObject *Sender)
 {
 Timer1->Enabled=true;
 nomer=1;
-metka=1;
 }
 //---------------------------------------------------------------------------

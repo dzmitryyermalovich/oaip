@@ -51,55 +51,48 @@ void __fastcall TForm1::Image1MouseUp(TObject *Sender, TMouseButton Button, TShi
 X2=X;
 Y2=Y;
 
-switch(RadioGroup3->ItemIndex)
+
+switch(activationNumber)
 {
 
 case 0:
 
-  if (RadioGroup4->ItemIndex!=3)
-  {
+  //Image1->Canvas->Rectangle(X1,Y1,X2,Y2);
   rec.get(X1,Y1,X2,Y2);
   rec.show(Canvas,Image1);
-  rec.showCenterMass();
-  }
-  else
-  {
-   rec.moveCenterMass(X1,Y1);
-   rec.show(Canvas,Image1);
-  }
 
-   switch(RadioGroup4->ItemIndex)
-   {
-   case 0:
+ switch (operation) {
 
-   square=rec.showSquare();
-   Panel1->Caption="regtangle square = "+FloatToStr(square);
+ case 0:
 
-   break;
+  square=rec.showSquare();
+  Panel1->Caption="regtangle square = "+FloatToStr(square);
 
-   case 4:
+ break;
 
-   Panel1->Caption="";
+ case -1:
 
-   break;
+	Panel1->Caption="";
 
-   case 1:
+ break;
+
+ case 1:
 	 perimetr=rec.showPerimetr();
 	 Panel1->Caption="regtangle perimetr = "+FloatToStr(perimetr);
-   break;
+ break;
 
-   case 2:
+ case 2:
+	 //rec.showCenterMass();
 	 Panel1->Caption="centers rectangle X = "+FloatToStr((X1+X2)/2)+" Y = "+FloatToStr((Y1+Y2)/2);
+ break;
+ }
 
-   break;
 
-   }
-
-break;
+ break;
 
 case 1:
 
-if(RadioGroup4->ItemIndex!=3)
+ if (operation!=3)
  {
  kr.get(X1,Y1,X2,Y2);
  kr.calculateRadius();
@@ -111,18 +104,21 @@ if(RadioGroup4->ItemIndex!=3)
    kr.show(Canvas,Image1);
  }
 
-  switch(RadioGroup4->ItemIndex)
-  {
-    case 0:
 
-	square=kr.showSquare();
-	Panel1->Caption=FloatToStr(square);
-	Panel1->Caption="Circus square = "+FloatToStr(square);
-	break;
 
-	case 4:
-	Panel1->Caption="";
-	break;
+
+ switch (operation)
+ {
+   case 0:
+   //fig=&rec;
+   square=kr.showSquare();
+   Panel1->Caption=FloatToStr(square);
+   Panel1->Caption="Circus square = "+FloatToStr(square);
+   break;
+
+  case -1:
+  Panel1->Caption="";
+  break;
 
 	 case(1):
 	 perimetr=kr.showPerimetr();
@@ -130,15 +126,14 @@ if(RadioGroup4->ItemIndex!=3)
 	 break;
 
 	 case 2:
-
+	 //rec.showCenterMass();
 	 Panel1->Caption="centers circus X = "+FloatToStr(X1)+" Y = "+FloatToStr(Y1);
 	 break;
-  }
+ }
 
 break;
+
 }
-
-
 
 }
 //---------------------------------------------------------------------------
@@ -182,12 +177,4 @@ void __fastcall TForm1::RadioButton7Click(TObject *Sender)
    operation=3;
 }
 //---------------------------------------------------------------------------
-
-void __fastcall TForm1::Image1Click(TObject *Sender)
-{
-   Image1->Canvas->FillRect(Image1->Canvas->ClipRect);
-}
-//---------------------------------------------------------------------------
-
-
 

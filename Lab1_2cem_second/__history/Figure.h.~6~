@@ -34,16 +34,7 @@ public:
 	this->Y1=Y1;
 	this->X2=X2;
 	this->Y2=Y2;
-	}
-
-	void calculateRadius()
-	{
 	this->r=sqrt(pow((Y2-Y1),2)+pow((X2-X1),2));
-	}
-
-	void show(TCanvas *Canvas,TImage *Image1)
-	{
-	Image1->Canvas->Ellipse(X1-r,Y1+r,X1+r,Y1-r);
 	}
 
 	double showSquare()
@@ -58,18 +49,13 @@ public:
 		   return p;
 	}
 
-	void showCenterMass()
+    void showCenterMass()
 	{
 	  xc=X1;
 	  yc=Y1;
 
 	}
 
-	void moveCenterMass(double X1,double Y1)
-	{
-	this->X1=X1;
-	this->Y1=Y1;
-	}
 
 };
 
@@ -99,11 +85,6 @@ public:
 	this->Y2=Y2;
 	}
 
-	void show(TCanvas *Canvas,TImage *Image1)
-	{
-	Image1->Canvas->Rectangle(X1,Y1,X2,Y2);
-	}
-
 	double showSquare()
 	{
 		   s=a*b;
@@ -120,15 +101,7 @@ public:
 	{
 	  xc=(X1+X2)/2;
 	  yc=(Y1+Y2)/2;
-	}
 
-	void moveCenterMass(double newX,double newY)
-	{
-	   X1=newX-a/2;
-	   Y1=newY-b/2;
-	   X2=2*newX-X1;
-	   Y2=2*newY-Y1;
 	}
-
 
 };

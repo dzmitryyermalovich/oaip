@@ -4,14 +4,14 @@
     <Transaction>2021/02/20 16:09:11.000.964,=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
     <Transaction>2021/02/20 16:09:12.000.058,=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
     <Transaction>2021/02/20 16:09:19.000.397,=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit2.cpp</Transaction>
-    <Transaction>2021/02/20 16:09:32.000.179,C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Plane.h=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit2.h</Transaction>
-    <Transaction>2021/02/20 16:09:32.000.179,C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Plane.cpp=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit2.cpp</Transaction>
-    <Transaction>2021/02/20 16:13:50.000.903,C:\Education\IT\OAIP\Lab1_2cem\Plane.h=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Plane.h</Transaction>
-    <Transaction>2021/02/20 16:13:50.000.903,C:\Education\IT\OAIP\Lab1_2cem\Plane.cpp=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Plane.cpp</Transaction>
-    <Transaction>2021/02/20 19:20:00.000.707,C:\Education\IT\OAIP\Lab1_2cem\Unit1.h=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit1.h</Transaction>
-    <Transaction>2021/02/20 19:20:00.000.707,C:\Education\IT\OAIP\Lab1_2cem\Unit1.dfm=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2021/02/20 19:20:00.000.707,C:\Education\IT\OAIP\Lab1_2cem\Unit1.cpp=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>2021/02/20 19:20:01.000.771,C:\Education\IT\OAIP\Lab1_2cem\Project1.cbproj=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
-    <Transaction>2021/02/20 19:20:01.000.297,C:\Education\IT\OAIP\Lab1_2cem\Project1PCH1.h=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2021/02/20 16:09:32.000.179,C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit2.cpp=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Plane.cpp</Transaction>
+    <Transaction>2021/02/20 16:09:32.000.179,C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit2.h=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Plane.h</Transaction>
+    <Transaction>2021/02/20 16:13:50.000.903,C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Plane.h=C:\Education\IT\OAIP\Lab1_2cem\Plane.h</Transaction>
+    <Transaction>2021/02/20 16:13:50.000.903,C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Plane.cpp=C:\Education\IT\OAIP\Lab1_2cem\Plane.cpp</Transaction>
+    <Transaction>2021/02/20 19:20:00.000.707,C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit1.cpp=C:\Education\IT\OAIP\Lab1_2cem\Unit1.cpp</Transaction>
+    <Transaction>2021/02/20 19:20:00.000.707,C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit1.h=C:\Education\IT\OAIP\Lab1_2cem\Unit1.h</Transaction>
+    <Transaction>2021/02/20 19:20:00.000.707,C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Education\IT\OAIP\Lab1_2cem\Unit1.dfm</Transaction>
+    <Transaction>2021/02/20 19:20:01.000.297,C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Project1PCH1.h=C:\Education\IT\OAIP\Lab1_2cem\Project1PCH1.h</Transaction>
+    <Transaction>2021/02/20 19:20:01.000.771,C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Project1.cbproj=C:\Education\IT\OAIP\Lab1_2cem\Project1.cbproj</Transaction>
   </Transactions>
 </BorlandProject>
