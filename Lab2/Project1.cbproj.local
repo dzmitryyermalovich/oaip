@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2021/03/01 15:24:59.000.095,=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2021/03/01 15:24:59.000.213,=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2021/03/01 16:12:50.000.605,C:\git\oaip\Lab2\Unit1.cpp=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2021/03/01 16:12:50.000.605,C:\git\oaip\Lab2\Unit1.dfm=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2021/03/01 16:12:50.000.605,C:\git\oaip\Lab2\Unit1.h=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit1.h</Transaction>
+    <Transaction>2021/03/01 16:31:48.000.460,=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit2.cpp</Transaction>
+    <Transaction>2021/03/01 16:32:24.000.092,C:\Users\Dima\Documents\Embarcadero\Studio\Projects\list.cpp=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit2.cpp</Transaction>
+    <Transaction>2021/03/01 16:32:24.000.092,C:\Users\Dima\Documents\Embarcadero\Studio\Projects\list.h=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit2.h</Transaction>
+    <Transaction>2021/03/01 16:42:28.000.674,C:\git\oaip\Lab2\list.h=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\list.h</Transaction>
+    <Transaction>2021/03/01 16:42:28.000.674,C:\git\oaip\Lab2\list.cpp=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\list.cpp</Transaction>
+    <Transaction>2021/03/01 16:42:29.000.770,C:\git\oaip\Lab2\Project1PCH1.h=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2021/03/01 16:42:30.000.839,C:\git\oaip\Lab2\Project1.cbproj=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+  </Transactions>
+</BorlandProject>

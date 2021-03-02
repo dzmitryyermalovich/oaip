@@ -29,4 +29,14 @@
   }
 
 
+  void plane::moveDown(TCanvas *Canvas)
+  {
+  Canvas->Pen->Color=clRed;
+  hide(Canvas);
+  x1=x1+8;
+  x2=x2+8;
+  y1=y1+4;
+  y2=y2+4;
+  show(Canvas);
+  }
 

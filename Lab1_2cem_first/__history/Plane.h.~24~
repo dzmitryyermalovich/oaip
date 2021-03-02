@@ -93,10 +93,12 @@ public:
 
    Canvas->MoveTo(x2,y2-1);
 
+   //Canvas->LineTo((x2+50)-(i-5),y2-1+(i-5));
+
    if(((x2+50)-i)==x2)
    {
 	   Canvas->LineTo(x2,y2-1+i);
-	   Canvas->Ellipse(x2-10,((y2-1)+i)+10,x2+10,((y2-1)+i)-10);
+       Canvas->Ellipse(x2-10,((y2-1)+i)+10,x2+10,((y2-1)+i)-10);
 
    }
    else
@@ -105,7 +107,7 @@ public:
 	   Canvas->Ellipse((x2+50)-10-(i-5),((y2-1)+i-5)+10,(x2+50)+10-(i-5),((y2-1)+i-5)-10);
    }
 
-
+   //Canvas->Ellipse((x2+50)-10-i,((y2-1)+i)+10,(x2+50)+10-i,((y2-1)+i)-10);
 
   }
 
@@ -123,15 +125,11 @@ public:
 
   }
 
-	void moveDown(TCanvas *Canvas)
+  void moveDown(TCanvas *Canvas)
   {
-   if(((x2+50)-i)!=x2)
-   {
    hideChassisDown(Canvas);
    plane::moveDown(Canvas);
    moveChassisDown(Canvas);
-   }
-
   }
 
    private:

@@ -1,0 +1,134 @@
+//---------------------------------------------------------------------------
+
+#ifndef FigureH
+#define FigureH
+//---------------------------------------------------------------------------
+#endif
+#include<math.h>
+#include<vcl.h>
+class figure
+{
+public:
+
+virtual double showSquare();
+
+};
+
+class cirk
+{
+protected:
+double r;
+double s,p;
+double xc,yc;
+double X1,Y1,X2,Y2;
+public:
+
+   //	cirk(double r)
+	//{
+	 //  this->r=r;
+	//}
+
+	void get(double X1,double Y1,double X2,double Y2)
+	{
+	this->X1=X1;
+	this->Y1=Y1;
+	this->X2=X2;
+	this->Y2=Y2;
+	}
+
+	void calculateRadius()
+	{
+	this->r=sqrt(pow((Y2-Y1),2)+pow((X2-X1),2));
+	}
+
+	void show(TCanvas *Canvas,TImage *Image1)
+	{
+	Image1->Canvas->Ellipse(X1-r,Y1+r,X1+r,Y1-r);
+	}
+
+	double showSquare()
+	{
+		   s=3.14*r*r;
+		   return s;
+	}
+
+	double showPerimetr()
+	{
+		   p=2*3.14*r;
+		   return p;
+	}
+
+	void showCenterMass()
+	{
+	  xc=X1;
+	  yc=Y1;
+
+	}
+
+	void moveCenterMass(double X1,double Y1)
+	{
+	this->X1=X1;
+	this->Y1=Y1;
+	}
+
+};
+
+class rectangle
+{
+
+protected:
+double a,b;
+double s,p;
+double xc,yc;
+double X1,Y1,X2,Y2;
+public:
+
+	//rectangle(double a,double b)
+	//{
+	 //  this->a=a;
+	  // this->b=b;
+	//}
+
+	void get(double X1,double Y1,double X2,double Y2)
+	{
+	a=abs(X1-X2);
+	b=abs(Y1-Y2);
+	this->X1=X1;
+	this->X2=X2;
+	this->Y1=Y1;
+	this->Y2=Y2;
+	}
+
+	void show(TCanvas *Canvas,TImage *Image1)
+	{
+	Image1->Canvas->Rectangle(X1,Y1,X2,Y2);
+	}
+
+	double showSquare()
+	{
+		   s=a*b;
+		   return s;
+	}
+
+		double showPerimetr()
+	{
+		   p=2*(a+b);
+		   return p;
+	}
+
+	void showCenterMass()
+	{
+	  xc=(X1+X2)/2;
+	  yc=(Y1+Y2)/2;
+	}
+
+	void moveCenterMass(double newX,double newY)
+	{
+	   X1=newX-a/2;
+	   Y1=newY-b/2;
+	   X2=2*newX-X1;
+	   Y2=2*newY-Y1;
+	}
+
+
+};

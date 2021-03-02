@@ -1,0 +1,43 @@
+//---------------------------------------------------------------------------
+
+#ifndef listH
+#define listH
+//---------------------------------------------------------------------------
+#endif
+
+#include<String.h>
+#include<String>
+#include <vcl.h>
+
+
+#include "Unit1.h"
+
+#include<String.h>
+#include<String>
+
+
+ class worker
+ {
+ private:
+ String name,project,exercise,dataPr,dataBegin,dataEnd;
+ public:
+
+	void get(String name,String project,String exercise,String dataPr,String dataBegin,String dataEnd)
+	{
+
+	  this->name=name;
+	  this->project=project;
+	  this->exercise=exercise;
+	  this->dataPr=dataPr;
+	  this->dataBegin=dataBegin;
+	  this->dataEnd=dataEnd;
+
+	}
+
+	void print(TMemo *Memo1)
+	{
+	Memo1->Lines->Add(name+"  "+project+"  "+exercise+"  "+dataPr+"  "+dataBegin+"  "+dataEnd+"\n");
+	Memo1->Lines->Add("\n");
+	}
+
+ };

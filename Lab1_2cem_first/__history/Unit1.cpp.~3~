@@ -31,7 +31,7 @@ if (nomer==0) {
 a.move(Canvas);
 }else
 {
-a.moveDown(Canvas)
+a.moveDown(Canvas);
 }
 
 }

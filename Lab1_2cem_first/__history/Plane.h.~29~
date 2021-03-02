@@ -1,53 +1,48 @@
 //---------------------------------------------------------------------------
 
-#pragma hdrstop
-
-#include "Plane.h"
+#ifndef PlaneH
+#define PlaneH
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
+#endif
+#include<vcl.h>
+class plane
+{
+  public:
 
-  void plane::show(TCanvas *Canvas)
+  plane(int x1,int y1,int x2,int y2)
   {
-  Canvas->Pen->Color=clRed;
-  Canvas->Rectangle(x1,y1,x2,y2);
+  this-> x1=x1;
+  this-> y1=y1;
+  this-> x2=x2;
+  this-> y2=y2;
   }
 
-  void plane::hide(TCanvas *Canvas)
-  {
-  Canvas->Pen->Color=clWhite;
-  Canvas->Rectangle(x1,y1,x2,y2);
-  }
+  void show(TCanvas *Canvas);
 
-  void plane::move(TCanvas *Canvas,int lr)
-  {
-  learningRate=lr;
-  Canvas->Pen->Color=clRed;
-  hide(Canvas);
-  x1=x1+learningRate;
-  x2=x2+learningRate;
-  show(Canvas);
-  }
+  void hide(TCanvas *Canvas);
+
+  void move(TCanvas *Canvas,int lr);
+
+  void moveDown(TCanvas *Canvas);
+
+  protected:
+  int x1;
+  int x2;
+  int y1;
+  int y2;
+  int learningRate=5;
+};
 
 
-  void plane::moveDown(TCanvas *Canvas)
-  {
-  Canvas->Pen->Color=clRed;
-  hide(Canvas);
-  x1=x1+8;
-  x2=x2+8;
-  y1=y1+4;
-  y2=y2+4;
-  show(Canvas);
-  }
+class chassis:public plane
+{
+public:
 
-  void planeAndChassis::move(TCanvas *Canvas)
-  {
-   hideChassisFly(Canvas);
-   plane::move(Canvas,5);
-   moveChassisFly(Canvas);
-  }
+  chassis(int x1,int y1,int x2,int y2):plane(x1,y1,x2,y2){}
 
-  void planeAndChassis::hideChassisFly(TCanvas *Canvas)
+  void move(TCanvas *Canvas);
+
+  void hideChassisFly(TCanvas *Canvas)
   {
    Canvas->Pen->Color=clWhite;
 
@@ -60,7 +55,7 @@
    Canvas->Ellipse((x1-20)-10,(y2-1)+10,(x1-20)+10,(y2-1)-10);
   }
 
-	void planeAndChassis::moveChassisFly(TCanvas *Canvas)
+  void moveChassisFly(TCanvas *Canvas)
   {
    Canvas->MoveTo(x2,y2-1);
    Canvas->LineTo(x2+20,y2-1);
@@ -71,7 +66,7 @@
    Canvas->Ellipse((x1-20)-10,(y2-1)+10,(x1-20)+10,(y2-1)-10);
   }
 
-	void planeAndChassis::hideChassisDown(TCanvas *Canvas)
+  void hideChassisDown(TCanvas *Canvas)
   {
    Canvas->Pen->Color=clWhite;
 
@@ -105,7 +100,7 @@
 
   }
 
-  void planeAndChassis::moveFinal(TCanvas *Canvas)
+  void moveFinal(TCanvas *Canvas)
   {
    Canvas->Pen->Color=clRed;
 
@@ -118,7 +113,7 @@
    Canvas->Ellipse(x1-10,((y2-1)+i)+10,x1+10,((y2-1)+i)-10);
   }
 
-	void planeAndChassis::moveChassisDown(TCanvas *Canvas)
+  void moveChassisDown(TCanvas *Canvas)
   {
 
    Canvas->MoveTo(x2,y2-1);
@@ -137,7 +132,7 @@
 
   }
 
-	void planeAndChassis::moveDown(TCanvas *Canvas)
+  void moveDown(TCanvas *Canvas)
   {
   if(((x2+20)-i)==x2)
   {
@@ -153,3 +148,9 @@
    moveChassisDown(Canvas);
   }
   }
+
+   private:
+   int i=0;
+   int kof=5;
+};
+

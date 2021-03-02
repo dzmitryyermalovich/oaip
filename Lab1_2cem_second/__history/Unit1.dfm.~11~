@@ -24,60 +24,8 @@ object Form1: TForm1
     OnMouseDown = Image1MouseDown
     OnMouseUp = Image1MouseUp
   end
-  object Label1: TLabel
-    Left = 711
-    Top = 462
-    Width = 15
-    Height = 16
-    Caption = 'X1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-  end
-  object Label2: TLabel
-    Left = 711
-    Top = 518
-    Width = 14
-    Height = 16
-    Caption = 'Y1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-  end
-  object Label3: TLabel
-    Left = 816
-    Top = 464
-    Width = 15
-    Height = 16
-    Caption = 'X2'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-  end
-  object Label4: TLabel
-    Left = 816
-    Top = 520
-    Width = 14
-    Height = 16
-    Caption = 'Y1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-  end
   object Panel1: TPanel
-    Left = 304
+    Left = 360
     Top = 520
     Width = 313
     Height = 41
@@ -102,7 +50,7 @@ object Form1: TForm1
   end
   object RadioGroup4: TRadioGroup
     Left = 736
-    Top = 168
+    Top = 192
     Width = 185
     Height = 249
     Caption = #1044#1077#1081#1089#1090#1074#1080#1077
@@ -119,42 +67,5 @@ object Form1: TForm1
       #1054#1090#1084#1077#1085#1072)
     ParentFont = False
     TabOrder = 2
-  end
-  object Edit1: TEdit
-    Left = 745
-    Top = 461
-    Width = 57
-    Height = 21
-    TabOrder = 3
-  end
-  object Edit2: TEdit
-    Left = 845
-    Top = 461
-    Width = 63
-    Height = 21
-    TabOrder = 4
-  end
-  object Edit3: TEdit
-    Left = 848
-    Top = 517
-    Width = 63
-    Height = 21
-    TabOrder = 5
-  end
-  object Edit4: TEdit
-    Left = 745
-    Top = 517
-    Width = 57
-    Height = 21
-    TabOrder = 6
-  end
-  object Button1: TButton
-    Left = 776
-    Top = 560
-    Width = 75
-    Height = 25
-    Caption = #1054#1090#1086#1073#1088#1072#1079#1080#1090#1100
-    TabOrder = 7
-    OnClick = Button1Click
   end
 end

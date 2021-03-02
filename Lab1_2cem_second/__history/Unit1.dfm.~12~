@@ -27,9 +27,9 @@ object Form1: TForm1
   object Label1: TLabel
     Left = 711
     Top = 462
-    Width = 15
+    Width = 8
     Height = 16
-    Caption = 'X1'
+    Caption = 'X'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -38,11 +38,11 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 711
-    Top = 518
-    Width = 14
+    Left = 688
+    Top = 520
+    Width = 37
     Height = 16
-    Caption = 'Y1'
+    Caption = 'Label2'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -51,30 +51,18 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 816
+    Left = 808
     Top = 464
-    Width = 15
-    Height = 16
-    Caption = 'X2'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
+    Width = 31
+    Height = 13
+    Caption = 'Label3'
   end
   object Label4: TLabel
     Left = 816
     Top = 520
-    Width = 14
-    Height = 16
-    Caption = 'Y1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
+    Width = 31
+    Height = 13
+    Caption = 'Label4'
   end
   object Panel1: TPanel
     Left = 304
@@ -124,37 +112,32 @@ object Form1: TForm1
     Left = 745
     Top = 461
     Width = 57
-    Height = 21
+    Height = 28
     TabOrder = 3
+    Text = 'Edit1'
   end
   object Edit2: TEdit
     Left = 845
     Top = 461
     Width = 63
-    Height = 21
+    Height = 28
     TabOrder = 4
+    Text = 'Edit2'
   end
   object Edit3: TEdit
     Left = 848
     Top = 517
     Width = 63
-    Height = 21
+    Height = 28
     TabOrder = 5
+    Text = 'Edit3'
   end
   object Edit4: TEdit
     Left = 745
     Top = 517
     Width = 57
-    Height = 21
+    Height = 28
     TabOrder = 6
-  end
-  object Button1: TButton
-    Left = 776
-    Top = 560
-    Width = 75
-    Height = 25
-    Caption = #1054#1090#1086#1073#1088#1072#1079#1080#1090#1100
-    TabOrder = 7
-    OnClick = Button1Click
+    Text = 'Edit4'
   end
 end

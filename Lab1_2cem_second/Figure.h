@@ -23,53 +23,19 @@ double xc,yc;
 double X1,Y1,X2,Y2;
 public:
 
-   //	cirk(double r)
-	//{
-	 //  this->r=r;
-	//}
+	void get(double X1,double Y1,double X2,double Y2);
 
-	void get(double X1,double Y1,double X2,double Y2)
-	{
-	this->X1=X1;
-	this->Y1=Y1;
-	this->X2=X2;
-	this->Y2=Y2;
-	}
+	void calculateRadius();
 
-	void calculateRadius()
-	{
-	this->r=sqrt(pow((Y2-Y1),2)+pow((X2-X1),2));
-	}
+	void show(TCanvas *Canvas,TImage *Image1);
 
-	void show(TCanvas *Canvas,TImage *Image1)
-	{
-	Image1->Canvas->Ellipse(X1-r,Y1+r,X1+r,Y1-r);
-	}
+	double showSquare();
 
-	double showSquare()
-	{
-		   s=3.14*r*r;
-		   return s;
-	}
+	double showPerimetr();
 
-	double showPerimetr()
-	{
-		   p=2*3.14*r;
-		   return p;
-	}
+	void showCenterMass();
 
-	void showCenterMass()
-	{
-	  xc=X1;
-	  yc=Y1;
-
-	}
-
-	void moveCenterMass(double X1,double Y1)
-	{
-	this->X1=X1;
-	this->Y1=Y1;
-	}
+	void moveCenterMass(double X1,double Y1);
 
 };
 
@@ -83,52 +49,19 @@ double xc,yc;
 double X1,Y1,X2,Y2;
 public:
 
-	//rectangle(double a,double b)
-	//{
-	 //  this->a=a;
-	  // this->b=b;
-	//}
 
-	void get(double X1,double Y1,double X2,double Y2)
-	{
-	a=abs(X1-X2);
-	b=abs(Y1-Y2);
-	this->X1=X1;
-	this->X2=X2;
-	this->Y1=Y1;
-	this->Y2=Y2;
-	}
 
-	void show(TCanvas *Canvas,TImage *Image1)
-	{
-	Image1->Canvas->Rectangle(X1,Y1,X2,Y2);
-	}
+	void get(double X1,double Y1,double X2,double Y2);
 
-	double showSquare()
-	{
-		   s=a*b;
-		   return s;
-	}
+	void show(TCanvas *Canvas,TImage *Image1);
 
-		double showPerimetr()
-	{
-		   p=2*(a+b);
-		   return p;
-	}
+	double showSquare();
 
-	void showCenterMass()
-	{
-	  xc=(X1+X2)/2;
-	  yc=(Y1+Y2)/2;
-	}
+	double showPerimetr();
 
-	void moveCenterMass(double newX,double newY)
-	{
-	   X1=newX-a/2;
-	   Y1=newY-b/2;
-	   X2=2*newX-X1;
-	   Y2=2*newY-Y1;
-	}
+	void showCenterMass();
+
+	void moveCenterMass(double newX,double newY);
 
 
 };

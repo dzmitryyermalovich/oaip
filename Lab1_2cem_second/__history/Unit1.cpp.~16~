@@ -191,22 +191,3 @@ void __fastcall TForm1::Image1Click(TObject *Sender)
 
 
 
-void __fastcall TForm1::Button1Click(TObject *Sender)
-{
-if(RadioGroup3->ItemIndex==0)
-{
-  rec.get(StrToInt(Edit1->Text),StrToInt(Edit4->Text),StrToInt(Edit2->Text),StrToInt(Edit3->Text));
-  rec.show(Canvas,Image1);
-}
-else if(RadioGroup3->ItemIndex==1)
-{
-
-  kr.get(StrToInt(Edit1->Text),StrToInt(Edit4->Text),StrToInt(Edit2->Text),StrToInt(Edit3->Text));
-  kr.show(Canvas,Image1);
-
-}
-}
-//---------------------------------------------------------------------------
-
-
-
