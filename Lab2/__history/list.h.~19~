@@ -1,0 +1,149 @@
+//---------------------------------------------------------------------------
+
+#ifndef listH
+#define listH
+//---------------------------------------------------------------------------
+#endif
+
+#include<String.h>
+#include<String>
+#include <vcl.h>
+#include "Unit1.h"
+#include<math.h>
+
+ class worker
+ {
+ private:
+ String name,project,exercise,dataPr,dataBegin,dataEnd;
+
+ void processArr(int *time,worker *arr,int size,TMemo *Memo1);
+
+  void processData(int *time,worker *arr,int size,TMemo *Memo1);
+
+ public:
+
+	void get(String name,String project,String exercise,String dataPr,String dataBegin,String dataEnd)
+	{
+
+	  this->name=name;
+	  this->project=project;
+	  this->exercise=exercise;
+	  this->dataPr=dataPr;
+	  this->dataBegin=dataBegin;
+	  this->dataEnd=dataEnd;
+
+	}
+
+	void print(TMemo *Memo1)
+	{
+	Memo1->Lines->Add(name+"  "+project+"  "+exercise+"  "+dataPr+"  "+dataBegin+"  "+dataEnd+"\n");
+	Memo1->Lines->Add("\n");
+	}
+
+	String distinguishStr()
+	{
+		String str;
+		str=name+"  "+project+"  "+exercise+"  "+dataPr+"  "+dataBegin+"  "+dataEnd+"\n";
+		return str;
+	}
+
+	void operator=(const worker& p)
+	{
+	   this->name=p.name;
+	   this->project=p.project;
+	   this->exercise=p.exercise;
+	   this->dataPr=p.dataPr;
+	   this->dataBegin=p.dataBegin;
+	   this->dataEnd=p.dataEnd;
+	}
+
+	 void delet(int n,worker *&arr,int &size)
+	{
+		 worker* newArr=new worker[size-1];
+		 int index=0;
+		 for(int i=0;i<size;i++)
+		 {
+		   if(i!=n)
+			{
+
+			 newArr[index].operator=(arr[i]);
+			 index++;
+			}
+
+		 }
+         size--;
+		 delete []arr;
+		 arr=newArr;
+	}
+
+	void find(TMemo *Memo1,String data,worker *arr,int index)
+	{
+	 for(int i=0;i<index;i++)
+	 {
+		if(data==arr[i].dataPr)
+		{
+		arr[i].print(Memo1);
+		}
+	 }
+
+	}
+
+	void calculate(TMemo *Memo1,worker *arr,int size)
+	{
+	  int *time=new int[size];
+	  processData(time,arr,size,Memo1);
+	  for(int i=0;i<size;i++)
+	  {
+		Memo1->Lines->Add(arr[i].name+"  "+time[i]+" Days \n");
+		Memo1->Lines->Add("\n");
+	  }
+
+	}
+
+	void sort(worker *arr,int &size,TMemo *Memo1)
+	{
+
+	worker* newArr=new worker[size];
+	int *time=new int[size];
+
+	int index=0;
+
+		   for(int i=0;i<size;i++)
+		 {
+				newArr[i].operator=(arr[i]);
+		 }
+
+		 processArr(time,arr,size,Memo1);
+		 worker temp;
+		 int buf;
+		for(int i=0;i<size-1;i++)
+		{
+		  for(int j=0;j<size-i-1;j++)
+		  {
+			 if(time[j]>time[j+1])
+			 {
+
+				  temp.operator=(arr[j]);
+				  arr[j].operator=(arr[j+1]);
+				  arr[j+1].operator=(temp);
+
+				  buf=time[j];
+				  time[j]=time[j+1];
+				  time[j+1]=buf;
+			 }
+		  }
+		}
+
+	  for(int i=0;i<size;i++)
+	  {
+
+	  arr[i].print(Memo1);
+
+	  }
+
+	}
+
+
+
+ };
+

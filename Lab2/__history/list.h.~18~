@@ -1,17 +1,27 @@
 //---------------------------------------------------------------------------
 
-#pragma hdrstop
-
-#include "list.h"
+#ifndef listH
+#define listH
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
+#endif
+
 #include<String.h>
 #include<String>
 #include <vcl.h>
+
+
 #include "Unit1.h"
+
+#include<String.h>
+#include<String>
 #include<math.h>
 
-void worker::processArr(int *time,worker *arr,int size,TMemo *Memo1)
+ class worker
+ {
+ private:
+ String name,project,exercise,dataPr,dataBegin,dataEnd;
+
+ void processArr(int *time,worker *arr,int size,TMemo *Memo1)
  {
 	 AnsiString s,subStr="";
 	 int alpha[3]={10,1000,1000000};
@@ -51,7 +61,7 @@ void worker::processArr(int *time,worker *arr,int size,TMemo *Memo1)
 	  }
  }
 
-   void worker::processData(int *time,worker *arr,int size,TMemo *Memo1)
+  void processData(int *time,worker *arr,int size,TMemo *Memo1)
   {
 
 	 AnsiString start,end,subStrStart="",subStrEnd="";
@@ -96,7 +106,9 @@ void worker::processArr(int *time,worker *arr,int size,TMemo *Memo1)
 	  }
   }
 
-	void worker::get(String name,String project,String exercise,String dataPr,String dataBegin,String dataEnd)
+ public:
+
+	void get(String name,String project,String exercise,String dataPr,String dataBegin,String dataEnd)
 	{
 
 	  this->name=name;
@@ -108,20 +120,30 @@ void worker::processArr(int *time,worker *arr,int size,TMemo *Memo1)
 
 	}
 
-	void worker::print(TMemo *Memo1)
+	void print(TMemo *Memo1)
 	{
 	Memo1->Lines->Add(name+"  "+project+"  "+exercise+"  "+dataPr+"  "+dataBegin+"  "+dataEnd+"\n");
 	Memo1->Lines->Add("\n");
 	}
 
-	String worker::distinguishStr()
+	String distinguishStr()
 	{
 		String str;
 		str=name+"  "+project+"  "+exercise+"  "+dataPr+"  "+dataBegin+"  "+dataEnd+"\n";
 		return str;
 	}
 
-		 void worker::delet(int n,worker *&arr,int &size)
+	void operator=(const worker& p)
+	{
+	   this->name=p.name;
+	   this->project=p.project;
+	   this->exercise=p.exercise;
+	   this->dataPr=p.dataPr;
+	   this->dataBegin=p.dataBegin;
+	   this->dataEnd=p.dataEnd;
+	}
+
+	 void delet(int n,worker *&arr,int &size)
 	{
 		 worker* newArr=new worker[size-1];
 		 int index=0;
@@ -135,44 +157,36 @@ void worker::processArr(int *time,worker *arr,int size,TMemo *Memo1)
 			}
 
 		 }
-		 size--;
+         size--;
 		 delete []arr;
 		 arr=newArr;
 	}
 
-	void worker::find(TMemo *Memo1,String data,worker *arr,int index,worker *dat,int &size)
+	void find(TMemo *Memo1,String data,worker *arr,int index)
 	{
-	size=0;
-	int j=0;
 	 for(int i=0;i<index;i++)
 	 {
 		if(data==arr[i].dataPr)
 		{
-		dat[j].operator=(arr[i]);
 		arr[i].print(Memo1);
-		j++;
-		size++;
 		}
 	 }
 
 	}
 
-	void worker::calculate(TMemo *Memo1,worker *arr,int size,worker *tim,int &sizeTime)
+	void calculate(TMemo *Memo1,worker *arr,int size)
 	{
 	  int *time=new int[size];
 	  processData(time,arr,size,Memo1);
-	  sizeTime=0;
 	  for(int i=0;i<size;i++)
 	  {
 		Memo1->Lines->Add(arr[i].name+"  "+time[i]+" Days \n");
-		tim[i].name=arr[i].name+"  "+time[i]+" Days \n";
-		sizeTime++;
 		Memo1->Lines->Add("\n");
 	  }
-		delete []time;
+
 	}
 
-	void worker::sort(worker *arr,int &size,TMemo *Memo1)
+	void sort(worker *arr,int &size,TMemo *Memo1)
 	{
 
 	worker* newArr=new worker[size];
@@ -212,18 +226,10 @@ void worker::processArr(int *time,worker *arr,int size,TMemo *Memo1)
 	  arr[i].print(Memo1);
 
 	  }
-	  delete[] newArr;
-	  delete[] time;
-	}
-
-
-	String worker::returnTime()
-	{
-
-	AnsiString str;
-
-	str=this->name;
-
-	return str;
 
 	}
+
+
+
+ };
+

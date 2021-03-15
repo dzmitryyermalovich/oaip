@@ -140,33 +140,25 @@ void worker::processArr(int *time,worker *arr,int size,TMemo *Memo1)
 		 arr=newArr;
 	}
 
-	void worker::find(TMemo *Memo1,String data,worker *arr,int index,worker *dat,int &size)
+	void worker::find(TMemo *Memo1,String data,worker *arr,int index)
 	{
-	size=0;
-	int j=0;
 	 for(int i=0;i<index;i++)
 	 {
 		if(data==arr[i].dataPr)
 		{
-		dat[j].operator=(arr[i]);
 		arr[i].print(Memo1);
-		j++;
-		size++;
 		}
 	 }
 
 	}
 
-	void worker::calculate(TMemo *Memo1,worker *arr,int size,worker *tim,int &sizeTime)
+	void worker::calculate(TMemo *Memo1,worker *arr,int size)
 	{
 	  int *time=new int[size];
 	  processData(time,arr,size,Memo1);
-	  sizeTime=0;
 	  for(int i=0;i<size;i++)
 	  {
 		Memo1->Lines->Add(arr[i].name+"  "+time[i]+" Days \n");
-		tim[i].name=arr[i].name+"  "+time[i]+" Days \n";
-		sizeTime++;
 		Memo1->Lines->Add("\n");
 	  }
 		delete []time;
@@ -214,16 +206,4 @@ void worker::processArr(int *time,worker *arr,int size,TMemo *Memo1)
 	  }
 	  delete[] newArr;
 	  delete[] time;
-	}
-
-
-	String worker::returnTime()
-	{
-
-	AnsiString str;
-
-	str=this->name;
-
-	return str;
-
 	}

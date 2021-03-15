@@ -14,10 +14,8 @@
 int index=0;
 worker a;
 int size=0;
-int sizeData=0;
 worker* arr=new worker[10];
 worker* tim=new worker[10];
-worker* data=new worker[10];
 String str[10];
 TForm1 *Form1;
 int nomerDelete;
@@ -210,8 +208,8 @@ a.sort(arr,index,Memo1);
 
 void __fastcall TForm1::Button8Click(TObject *Sender)
 {
-a.find(Memo1,Edit2->Text,arr,index,data,sizeData);
-Edit2->Clear();
+a.find(Memo1,Edit2->Text,arr,index);
+Edit1->Clear();
 }
 //---------------------------------------------------------------------------
 
@@ -225,8 +223,6 @@ a.calculate(Memo1,arr,index,tim,size);
 void __fastcall TForm1::Button10Click(TObject *Sender)
 {
 delete[]arr;
-delete[]tim;
-delete[]data;
 Application->Terminate();
 }
 //---------------------------------------------------------------------------
@@ -237,34 +233,16 @@ void __fastcall TForm1::Button11Click(TObject *Sender)
 
 if(FileSaveDialog1->Execute())
 {
-	TFileStream *fs=new TFileStream(FileSaveDialog1->FileName,fmOpenReadWrite);
+TFileStream *fs=new TFileStream(FileSaveDialog1->FileName,fmOpenReadWrite);
 	AnsiString str;
    for(int i=0;i<size;i++)
    {
-	 str=tim[i].returnTime();
+
 	 fs->Write(str.c_str(),str.Length());
    }
 	 delete fs;
 }
 
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::Button12Click(TObject *Sender)
-{
-if(FileSaveDialog1->Execute())
-{
-
-	TFileStream *fs=new TFileStream(FileSaveDialog1->FileName,fmOpenReadWrite);
-	AnsiString str;
-   for(int i=0;i<sizeData;i++)
-   {
-	 str=data[i].distinguishStr();
-	 fs->Write(str.c_str(),str.Length());
-   }
-	 delete fs;
-
-}
 }
 //---------------------------------------------------------------------------
 

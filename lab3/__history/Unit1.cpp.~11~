@@ -1,0 +1,117 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Unit1.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+#include<math.h>
+#include<String.h>
+#include<String>
+#include "List.h"
+#include "Unit2.h"
+List list;
+TForm1 *Form1;
+String name;
+//---------------------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::ComboBox1Change(TObject *Sender)
+{
+ComboBox2->ItemIndex=ComboBox1->ItemIndex;
+ComboBox3->ItemIndex=ComboBox1->ItemIndex;
+ComboBox4->ItemIndex=ComboBox1->ItemIndex;
+ComboBox5->ItemIndex=ComboBox1->ItemIndex;
+ComboBox6->ItemIndex=ComboBox1->ItemIndex;
+ComboBox7->ItemIndex=ComboBox1->ItemIndex;
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+int metka=list.set(Memo1->Lines->Strings[0],Memo1->Lines->Strings[1],Memo1->Lines->Strings[2],Memo1->Lines->Strings[3],Memo1->Lines->Strings[4],Memo1->Lines->Strings[5],Memo1->Lines->Strings[6],Memo1);
+
+if(metka==1)
+{
+ComboBox1->Items->Add(Memo1->Lines->Strings[0]);
+ComboBox6->Items->Add(Memo1->Lines->Strings[1]);
+ComboBox7->Items->Add(Memo1->Lines->Strings[2]);
+ComboBox2->Items->Add(Memo1->Lines->Strings[3]);
+ComboBox3->Items->Add(Memo1->Lines->Strings[4]);
+ComboBox4->Items->Add(Memo1->Lines->Strings[5]);
+ComboBox5->Items->Add(Memo1->Lines->Strings[6]);
+list.pushback(Memo1->Lines->Strings[0],Memo1->Lines->Strings[1],Memo1->Lines->Strings[2],Memo1->Lines->Strings[3],Memo1->Lines->Strings[4],Memo1->Lines->Strings[5],Memo1->Lines->Strings[6]);
+Memo1->Clear();
+}
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button2Click(TObject *Sender)
+{
+list.printList(Memo1);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button3Click(TObject *Sender)
+{
+switch(RadioGroup1->ItemIndex)
+{
+
+case 0:
+Memo1->Clear();
+name=Edit1->Text;
+list.findPlayer(name,Memo1);
+Edit1->Clear();
+break;
+
+case 1:
+Memo1->Clear();
+list.delet(Edit1->Text);
+Edit1->Clear();
+break;
+
+case 2:
+String weight;
+Memo1->Clear();
+weight=Edit1->Text;
+list.findWeight(weight,Memo1);
+Edit1->Clear();
+break;
+
+}
+
+
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::FormCreate(TObject *Sender)
+{
+  // Edit1->Hide();
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TForm1::Button4Click(TObject *Sender)
+{
+list.sort();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button5Click(TObject *Sender)
+{
+
+if(OpenDialog1->Execute)
+{
+
+}
+
+}
+//---------------------------------------------------------------------------
+

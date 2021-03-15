@@ -13,11 +13,7 @@
 #include "list.h"
 int index=0;
 worker a;
-int size=0;
-int sizeData=0;
 worker* arr=new worker[10];
-worker* tim=new worker[10];
-worker* data=new worker[10];
 String str[10];
 TForm1 *Form1;
 int nomerDelete;
@@ -38,7 +34,6 @@ List->LoadFromFile(FileOpenDialog1->FileName);
 AnsiString s;
 int begin=1;
 AnsiString newStr="";
-AnsiString processStr="";
 int nomer=0;
 
 
@@ -57,42 +52,22 @@ for(int i=0;i<3;i++)
 				newStr = newStr + s[k];
 			}
 
-		  if(nomer<3)
-		 {
-			for(int i=1;i<newStr.Length()+1;i++)
-			   {
-				  if(newStr[i]!='.')
-					{
-					  processStr=processStr+newStr[i];
-					}
-					else
-					{
-					 processStr=processStr+" ";
-					}
-			   }
-			   str[nomer]=processStr;
-		 }
-		 else
-		 {
-         str[nomer]=newStr;
-		 }
 
 
 			switch (nomer)
 			{
 			case 0:
-			ComboBox1->Items->Add(processStr);
+			ComboBox1->Items->Add(newStr);
 
 			break;
 
 			case 1:
-
-			ComboBox2->Items->Add(processStr);
+			ComboBox2->Items->Add(newStr);
 
 			break;
 
 			case 2:
-			ComboBox3->Items->Add(processStr);
+			ComboBox3->Items->Add(newStr);
 			 break;
 			case 3:
 			ComboBox4->Items->Add(newStr);
@@ -105,10 +80,9 @@ for(int i=0;i<3;i++)
 
 			break;
 			}
-
+			str[nomer]=newStr;
 			nomer++;
 			newStr = "";
-			processStr="";
 			begin = j + 1;
 
 		}
@@ -119,7 +93,6 @@ for(int i=0;i<3;i++)
 	 nomer=0;
 	 begin=1;
 }
-delete List;
 }
 }
 //---------------------------------------------------------------------------
@@ -148,7 +121,8 @@ Memo1->Clear();
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button3Click(TObject *Sender)
 {
-
+   //delet(Edit1->Text,arr,index);
+   //print1();
    a.delet(StrToInt(Edit1->Text),arr,index);
    ComboBox1->Items->Delete(StrToInt(Edit1->Text));
    ComboBox2->Items->Delete(StrToInt(Edit1->Text));
@@ -175,6 +149,11 @@ for(int i=0;i<index;i++)
 
 void __fastcall TForm1::Button5Click(TObject *Sender)
 {
+//Memo1->Lines->Clear();
+//for(int i=0;i<index;i++)
+//{
+  // arr[i].print(Memo1);
+//}
 	AnsiString str="";
 
  if(FileSaveDialog1->Execute())
@@ -187,7 +166,7 @@ void __fastcall TForm1::Button5Click(TObject *Sender)
 	 str=arr[i].distinguishStr();
 	 tfile->Write(str.c_str(),str.Length());
    }
-	 delete tfile;
+   //Memo1->Lines->SaveToFile(FileSaveDialog1->FileName);
  }
 
 }
@@ -210,61 +189,9 @@ a.sort(arr,index,Memo1);
 
 void __fastcall TForm1::Button8Click(TObject *Sender)
 {
-a.find(Memo1,Edit2->Text,arr,index,data,sizeData);
-Edit2->Clear();
+a.find(Memo1,Edit2->Text,arr,index);
+Edit1->Clear();
 }
 //---------------------------------------------------------------------------
 
-
-void __fastcall TForm1::Button9Click(TObject *Sender)
-{
-a.calculate(Memo1,arr,index,tim,size);
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::Button10Click(TObject *Sender)
-{
-delete[]arr;
-delete[]tim;
-delete[]data;
-Application->Terminate();
-}
-//---------------------------------------------------------------------------
-
-
-void __fastcall TForm1::Button11Click(TObject *Sender)
-{
-
-if(FileSaveDialog1->Execute())
-{
-	TFileStream *fs=new TFileStream(FileSaveDialog1->FileName,fmOpenReadWrite);
-	AnsiString str;
-   for(int i=0;i<size;i++)
-   {
-	 str=tim[i].returnTime();
-	 fs->Write(str.c_str(),str.Length());
-   }
-	 delete fs;
-}
-
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::Button12Click(TObject *Sender)
-{
-if(FileSaveDialog1->Execute())
-{
-
-	TFileStream *fs=new TFileStream(FileSaveDialog1->FileName,fmOpenReadWrite);
-	AnsiString str;
-   for(int i=0;i<sizeData;i++)
-   {
-	 str=data[i].distinguishStr();
-	 fs->Write(str.c_str(),str.Length());
-   }
-	 delete fs;
-
-}
-}
-//---------------------------------------------------------------------------
 

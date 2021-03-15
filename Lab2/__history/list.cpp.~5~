@@ -140,18 +140,13 @@ void worker::processArr(int *time,worker *arr,int size,TMemo *Memo1)
 		 arr=newArr;
 	}
 
-	void worker::find(TMemo *Memo1,String data,worker *arr,int index,worker *dat,int &size)
+	void worker::find(TMemo *Memo1,String data,worker *arr,int index)
 	{
-	size=0;
-	int j=0;
 	 for(int i=0;i<index;i++)
 	 {
 		if(data==arr[i].dataPr)
 		{
-		dat[j].operator=(arr[i]);
 		arr[i].print(Memo1);
-		j++;
-		size++;
 		}
 	 }
 
@@ -217,13 +212,9 @@ void worker::processArr(int *time,worker *arr,int size,TMemo *Memo1)
 	}
 
 
-	String worker::returnTime()
+	String returnTime(worker arr)
 	{
 
-	AnsiString str;
-
-	str=this->name;
-
-	return str;
+	return arr.name;
 
 	}

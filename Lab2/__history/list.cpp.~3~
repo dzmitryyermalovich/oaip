@@ -5,7 +5,7 @@
 #include "list.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#include<String.h>
+ #include<String.h>
 #include<String>
 #include <vcl.h>
 #include "Unit1.h"
@@ -140,90 +140,26 @@ void worker::processArr(int *time,worker *arr,int size,TMemo *Memo1)
 		 arr=newArr;
 	}
 
-	void worker::find(TMemo *Memo1,String data,worker *arr,int index,worker *dat,int &size)
+	void worker::find(TMemo *Memo1,String data,worker *arr,int index)
 	{
-	size=0;
-	int j=0;
 	 for(int i=0;i<index;i++)
 	 {
 		if(data==arr[i].dataPr)
 		{
-		dat[j].operator=(arr[i]);
 		arr[i].print(Memo1);
-		j++;
-		size++;
 		}
 	 }
 
 	}
 
-	void worker::calculate(TMemo *Memo1,worker *arr,int size,worker *tim,int &sizeTime)
+	void worker::calculate(TMemo *Memo1,worker *arr,int size)
 	{
 	  int *time=new int[size];
 	  processData(time,arr,size,Memo1);
-	  sizeTime=0;
 	  for(int i=0;i<size;i++)
 	  {
 		Memo1->Lines->Add(arr[i].name+"  "+time[i]+" Days \n");
-		tim[i].name=arr[i].name+"  "+time[i]+" Days \n";
-		sizeTime++;
 		Memo1->Lines->Add("\n");
 	  }
-		delete []time;
-	}
-
-	void worker::sort(worker *arr,int &size,TMemo *Memo1)
-	{
-
-	worker* newArr=new worker[size];
-	int *time=new int[size];
-
-	int index=0;
-
-		   for(int i=0;i<size;i++)
-		 {
-				newArr[i].operator=(arr[i]);
-		 }
-
-		 processArr(time,arr,size,Memo1);
-		 worker temp;
-		 int buf;
-		for(int i=0;i<size-1;i++)
-		{
-		  for(int j=0;j<size-i-1;j++)
-		  {
-			 if(time[j]>time[j+1])
-			 {
-
-				  temp.operator=(arr[j]);
-				  arr[j].operator=(arr[j+1]);
-				  arr[j+1].operator=(temp);
-
-				  buf=time[j];
-				  time[j]=time[j+1];
-				  time[j+1]=buf;
-			 }
-		  }
-		}
-
-	  for(int i=0;i<size;i++)
-	  {
-
-	  arr[i].print(Memo1);
-
-	  }
-	  delete[] newArr;
-	  delete[] time;
-	}
-
-
-	String worker::returnTime()
-	{
-
-	AnsiString str;
-
-	str=this->name;
-
-	return str;
 
 	}

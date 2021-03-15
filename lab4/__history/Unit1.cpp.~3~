@@ -7,14 +7,7 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
-#include "Plane.h"
 TForm1 *Form1;
-
-//plane a(50,100,180,130);
-planeAndChassis a(50,100,220,130);
-int nomer;
-int metka=0;
-int kol=0;
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
 	: TForm(Owner)
@@ -23,26 +16,15 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button1Click(TObject *Sender)
 {
-   Timer1->Enabled=true;
-   nomer=0;
-}
-//---------------------------------------------------------------------------
-void __fastcall TForm1::Timer1Timer(TObject *Sender)
+String str=Edit1->Text;
+char primer[100];
+int index=0;
+for(int i=1;i<=str.Length();i++)
 {
-if (nomer==0&&metka==0) {
-a.move(Canvas);
-}else
-{
-
-a.moveDown(Canvas);
+primer[index]=str[i];
+index++;
 }
 
 }
 //---------------------------------------------------------------------------
-void __fastcall TForm1::Button2Click(TObject *Sender)
-{
-Timer1->Enabled=true;
-nomer=1;
-metka=1;
-}
-//---------------------------------------------------------------------------
+

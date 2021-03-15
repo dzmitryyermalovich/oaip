@@ -40,15 +40,8 @@
 
 	 void delet(int n,worker *&arr,int &size);
 
-	void find(TMemo *Memo1,String data,worker *arr,int index,worker *dat,int &size);
+	void find(TMemo *Memo1,String data,worker *arr,int index);
 
-	void calculate(TMemo *Memo1,worker *arr,int size,worker *tim,int &sizeTime);
+	void calculate(TMemo *Memo1,worker *arr,int size);
 
 	void sort(worker *arr,int &size,TMemo *Memo1);
-
-	String returnTime();
-
-
-
- };
-

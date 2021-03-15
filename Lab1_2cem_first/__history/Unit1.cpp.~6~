@@ -14,7 +14,6 @@ TForm1 *Form1;
 planeAndChassis a(50,100,220,130);
 int nomer;
 int metka=0;
-int kol=0;
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
 	: TForm(Owner)
@@ -33,7 +32,6 @@ if (nomer==0&&metka==0) {
 a.move(Canvas);
 }else
 {
-
 a.moveDown(Canvas);
 }
 
