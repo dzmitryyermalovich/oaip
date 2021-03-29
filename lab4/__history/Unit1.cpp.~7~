@@ -19,7 +19,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 void __fastcall TForm1::Button1Click(TObject *Sender)
 {
 String str=Edit1->Text;
-char *primer=new char[(str.Length())+100];
+char *primer=new char[(str.Length())+10];
 //char primer[100];
 int index=0;
 for(int i=1;i<=str.Length();i++)

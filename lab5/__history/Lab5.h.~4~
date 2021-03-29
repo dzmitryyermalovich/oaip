@@ -1,0 +1,181 @@
+//---------------------------------------------------------------------------
+
+#ifndef Lab5H
+#define Lab5H
+//---------------------------------------------------------------------------
+#endif
+#include<vcl.h>
+class EmptyList
+{
+public:
+	EmptyList()
+	{
+		ShowMessage("Your list is empty");
+	}
+};
+
+class Queue
+{
+protected:
+
+	class Node
+	{
+	public:
+		int number;
+		Node* pNext;
+		Node* pPrev;
+		Node(int number, Node* pPrev, Node* pNext = nullptr)
+		{
+			this->number = number;
+			this->pNext = pNext;
+			this->pPrev = pPrev;
+		}
+	};
+
+	int size;
+	Node* head;
+	Node* top;
+public:
+
+	Queue()
+	{
+	head = nullptr;
+	size = 0;
+	top = nullptr;
+	}
+
+	void pushBack(int number)
+	{
+		if (head == nullptr)
+		{
+			Node* currant = new Node(number, nullptr);
+			head = currant;
+			top = currant;
+			size++;
+		}
+		else
+		{
+			top->pNext = new Node(number, top);
+			top = top->pNext;
+			size++;
+		}
+	}
+
+	void pop(TListBox *ListBox1)
+	{
+		size--;
+		if (size == -1) throw EmptyList();
+		if (size != 0)
+		{
+		ListBox1->Items->Add(head->number);
+			head = head->pNext;
+			head->pPrev = nullptr;
+		}
+		else
+		{
+			ListBox1->Items->Add(head->number);
+			head = nullptr;
+			top = nullptr;
+		}
+	}
+
+	void printFront(TListBox *ListBox1)
+	{
+	Node *currant=head;
+	while(currant->pNext!=0)
+	{
+		ListBox1->Items->Add(currant->number);
+		currant = currant->pNext;
+	}
+	 ListBox1->Items->Add(currant->number);
+	}
+
+	void popReadTop(TListBox *ListBox1)
+	{
+	ListBox1->Items->Add(top->number);
+	}
+
+	void popReadHead(TListBox *ListBox1)
+	{
+	ListBox1->Items->Add(head->number);
+	}
+};
+
+class DoubleList:public Queue
+{
+	private:
+	Node* maxLink;
+	Node* minLink;
+	int maxIndex,minIndex;
+
+	public:
+	void findMaxMin()
+	{
+		int max = 0;
+		int min = head->number;
+		Node* currant = head;
+		for(int i=0;i<size-1;i++)
+		{
+			if (max < currant->number)
+			{
+				max = currant->number;
+				maxLink = currant;
+				maxIndex = i;
+			}
+			if(min>currant->number)
+			{
+				min = currant->number;
+				minLink = currant;
+				minIndex= i;
+			}
+			currant = currant->pNext;
+		}
+	}
+
+	void insertList(DoubleList list2)
+		{
+			Node* buf;
+			this->findMaxMin();
+
+			if(maxIndex<minIndex)
+			{
+				buf = maxLink;
+				maxLink = minLink;
+				minLink = buf;
+			}
+
+			minLink->pNext = list2.head;
+			list2.head->pPrev = minLink;
+
+			maxLink->pPrev = list2.top;
+			list2.top->pNext = maxLink;
+
+		}
+
+	void pushBackBetween(int n,int num)
+		{
+			Node* currant = head;
+			Node* buf;
+			for (int i = 0; i < n; i++)
+			{
+				currant = currant->pNext;
+			}
+			buf = currant->pNext;
+			Node* ob = new Node(num, currant);
+			ob->pNext = buf;
+			currant->pNext = ob;
+			buf->pPrev= ob;
+		}
+
+		void deleteBetween(int n)
+			{
+				Node* currant = head;
+				for (int i = 0; i < n; i++)
+				{
+					currant = currant->pNext;
+				}
+				Node *buf = currant->pPrev;
+				buf->pNext = currant->pNext;
+				currant->pNext->pPrev = buf;
+			}
+};

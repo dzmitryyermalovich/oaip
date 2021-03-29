@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2021/03/02 14:47:09.000.280,=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
     <Transaction>2021/03/02 14:47:09.000.540,=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>2021/03/15 17:55:46.000.075,=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2021/03/02 14:47:09.000.280,=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
     <Transaction>2021/03/15 17:55:46.000.262,=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2021/03/15 17:55:46.000.075,=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
     <Transaction>2021/03/15 18:18:01.000.343,=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit2.cpp</Transaction>
-    <Transaction>2021/03/15 19:00:41.000.323,C:\git\oaip\lab4\Lab4.h=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit2.h</Transaction>
-    <Transaction>2021/03/15 19:00:41.000.323,C:\git\oaip\lab4\Lab4.cpp=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit2.cpp</Transaction>
-    <Transaction>2021/03/15 19:16:13.000.945,C:\git\oaip\lab4\Unit1.dfm=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2021/03/15 19:16:13.000.945,C:\git\oaip\lab4\Unit1.cpp=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>2021/03/15 19:16:13.000.945,C:\git\oaip\lab4\Unit1.h=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit1.h</Transaction>
-    <Transaction>2021/03/15 19:16:14.000.967,C:\git\oaip\lab4\Project1PCH1.h=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
-    <Transaction>2021/03/15 19:16:16.000.089,C:\git\oaip\lab4\Project1.cbproj=C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+    <Transaction>2021/03/15 19:00:41.000.323,C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit2.h=C:\git\oaip\lab4\Lab4.h</Transaction>
+    <Transaction>2021/03/15 19:00:41.000.323,C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit2.cpp=C:\git\oaip\lab4\Lab4.cpp</Transaction>
+    <Transaction>2021/03/15 19:16:13.000.945,C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit1.h=C:\git\oaip\lab4\Unit1.h</Transaction>
+    <Transaction>2021/03/15 19:16:13.000.945,C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\git\oaip\lab4\Unit1.dfm</Transaction>
+    <Transaction>2021/03/15 19:16:13.000.945,C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Unit1.cpp=C:\git\oaip\lab4\Unit1.cpp</Transaction>
+    <Transaction>2021/03/15 19:16:14.000.967,C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Project1PCH1.h=C:\git\oaip\lab4\Project1PCH1.h</Transaction>
+    <Transaction>2021/03/15 19:16:16.000.089,C:\Users\Dima\Documents\Embarcadero\Studio\Projects\Project1.cbproj=C:\git\oaip\lab4\Project1.cbproj</Transaction>
   </Transactions>
 </BorlandProject>

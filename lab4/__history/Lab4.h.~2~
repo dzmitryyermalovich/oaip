@@ -32,7 +32,7 @@ public:
 				}
 		  }
 
-		  void push_back(float number)
+		  void push_back(double number)
 		  {
 		  if (top == nullptr)
 				{
@@ -51,9 +51,7 @@ public:
 		  int processStr(char* str,TMemo *Memo1)
 		  {
 				int size = strlen(str);
-				//Memo1->Lines->Add(size);
 				str[size] = '+';
-				//Memo1->Lines->Add(str);
 				size++;
 				int begin = 0;
 				int index = 1;
@@ -192,7 +190,7 @@ public:
 
 			for(int i=1;i<index;i++)
 			{
-				NewStr=NewStr+obratPolsk[i]+" ";
+				NewStr=NewStr+obratPolsk[i];
 			}
 
 				Memo1->Lines->Add(NewStr);
@@ -264,7 +262,7 @@ private:
 	{
 	public:
 		char sumbol;
-		float number;
+		double number;
 		Node* pNext;
 
 		Node(char sumbol, Node* pNext)
@@ -273,7 +271,7 @@ private:
 			this->pNext = pNext;
 		}
 
-		Node(float number, Node* pNext)
+		Node(double number, Node* pNext)
 		{
 			this->number = number;
 			this->pNext = pNext;

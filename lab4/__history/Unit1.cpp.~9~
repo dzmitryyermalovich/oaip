@@ -28,7 +28,7 @@ primer[index]=str[i];
 index++;
 }
 //int size = strlen(primer);
-//Memo1->Lines->Add(index);
+Memo1->Lines->Add(index);
 int n=stack.processStr(primer,Memo1);
 //Memo1->Lines->Add(n);
 stack.calculateObrat(n,Memo1);
