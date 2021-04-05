@@ -27,6 +27,9 @@ public:
 	void removeList(binaryNode* currant, binaryNode* pred);
 	binaryNode* findMax();
 	int str;
+	int sizeOfSubStr = 0;
+	void calculateNumberOfElements();
+
 protected:
 	
 };
@@ -270,6 +273,31 @@ void binaryNode::TraverseWidth()
 
 }
 
+void binaryNode::calculateNumberOfElements()
+{
+	queue qu;
+	qu.pushBack(this);
+
+	binaryNode* buf;
+
+	while (qu.size != 0)
+	{
+		buf = qu.pop();
+		cout << buf->str << endl;
+		if (buf->left_child) {
+			qu.pushBack(buf->left_child);
+			sizeOfSubStr++;
+		}
+
+		if (buf->right_child) {
+			qu.pushBack(buf->right_child);
+			sizeOfSubStr++;
+		}
+
+	}
+
+}
+
 void binaryNode::push(binaryNode* ob) {
 
 	//binaryNode* currant = this;
@@ -298,15 +326,18 @@ int main()
 	binaryNode* node2_1 = new binaryNode(21);
 	binaryNode* node2_2 = new binaryNode(17);
 	binaryNode* node3_1 = new binaryNode(11);
-	binaryNode* node3_2 = new binaryNode(25);
-	binaryNode* node4_1 = new binaryNode(23);
-	binaryNode* node4_2 = new binaryNode(22);
+	binaryNode* node3_2 = new binaryNode(30);
+	binaryNode* node4_1 = new binaryNode(25);
+	binaryNode* node4_2 = new binaryNode(23);
+	binaryNode* d= new binaryNode(22);
+	/*
 	binaryNode* a = new binaryNode(24);
 	binaryNode* b = new binaryNode(80);
 	binaryNode* c = new binaryNode(18);
 	binaryNode* d = new binaryNode(66);
 	binaryNode* f = new binaryNode(95);
 	binaryNode* g = new binaryNode(70);
+	*/
 	root->push(node1_1);
 	root->push(node1_2);
 	root->push(node2_1);
@@ -315,12 +346,18 @@ int main()
 	root->push(node3_2);
 	root->push(node4_1);
 	root->push(node4_2);
-	root->push(a);
-	root->push(b);
-	root->push(c);
 	root->push(d);
-	root->push(f);
-	root->push(g);
-	//root->remove(35);
+	//root->push(a);
+	//root->push(b);
+	//root->push(c);
+	//root->push(d);
+	//root->push(f);
+	//root->push(g);
+	//root->remove(17);
+	binaryNode* a = root->left_child->left_child->right_child;
+	cout << a->str << endl;
+	a->calculateNumberOfElements();
+	cout <<"\n\n" <<a->sizeOfSubStr << endl;
+	//cout << root->sizeOfSubStr << endl;
 	//root->TraversePreorder();
 }

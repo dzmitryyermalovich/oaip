@@ -1,0 +1,383 @@
+//---------------------------------------------------------------------------
+
+#ifndef TreeH
+#define TreeH
+//---------------------------------------------------------------------------
+#endif
+#include<String.h>
+class binaryNode {
+public:
+	binaryNode* left_child = nullptr;
+	binaryNode* right_child = nullptr;
+	binaryNode* pNext = nullptr;
+	binaryNode* pPrev = nullptr;
+
+	void createTree(TTreeView *TreeView1,TMemo *Memo1);
+
+	void print(TMemo *Memo1)
+	{
+	   String st= IntToStr(this->str)+" "+this->name;
+	   Memo1->Lines->Add(st);
+	}
+
+	void TraversePreorder(TMemo *Memo1)
+	{
+
+	this->print(Memo1);
+	if (this->left_child) {
+		this->left_child->TraversePreorder(Memo1);
+	}
+
+	if (this->right_child) {
+		this->right_child->TraversePreorder(Memo1);
+	}
+
+	}
+
+	void TraverseSim(TMemo *Memo1){
+		if (this->left_child) {
+			this->left_child->TraverseSim(Memo1);
+		}
+
+		this->print(Memo1);
+
+		if (this->right_child) {
+			this->right_child->TraverseSim(Memo1);
+		}
+	}
+
+	void TraverseObrat(TMemo *Memo1)
+	{
+	if (this->left_child)
+		{
+			this->left_child->TraverseObrat(Memo1);
+		}
+
+	if (this->right_child)
+		{
+			this->right_child->TraverseObrat(Memo1);
+		}
+		this->print(Memo1);
+	}
+
+	void TraverseWidth(TMemo *Memo1);
+
+	binaryNode() {
+		this->str = 0;
+		this->name="";
+	}
+
+	binaryNode(int str,String name) {
+		this->str = str;
+		this->name=name;
+	}
+
+	void set(int str,String name)
+	{
+		this->str = str;
+		this->name=name;
+	}
+
+	void push(binaryNode *ob){
+		if (this->str > ob->str& this->left_child==nullptr) {
+			this->left_child = ob;
+		}
+		else if(this->str > ob->str) {
+			this->left_child->push(ob);
+		}
+
+		if (this->str < ob->str & this->right_child == nullptr) {
+			this->right_child = ob;
+		}
+		else if (this->str < ob->str) {
+			this->right_child->push(ob);
+		}
+	}
+
+	binaryNode* findMax(TMemo *Memo1)
+	{
+		if (this->right_child)
+		{
+			return this->right_child->findMax(Memo1);
+		}
+		else {
+		//Memo1->Lines->Add(this->str);
+		return this;
+		}
+	}
+
+	binaryNode* remove(int index,TMemo *Memo1)
+	{
+
+		int def;
+		binaryNode* currant;
+		binaryNode* pred = this;
+		currant=this->search(index);
+		pred = this->searchPrev(index, pred);
+		def=this->defineNode(currant);
+		binaryNode* currantMaxElementInSubTree=nullptr;
+		binaryNode* predtMaxElementInSubTree=nullptr;
+		if (def == 0) {
+			this->removeList(currant, pred);
+			return currantMaxElementInSubTree;
+		}
+
+		else if (def == 1) {
+			if (currant->left_child != nullptr) {
+				currantMaxElementInSubTree = currant->left_child->findMax(Memo1);
+			}
+			else {
+				currantMaxElementInSubTree = currant->right_child->findMin();
+			}
+			predtMaxElementInSubTree = currantMaxElementInSubTree;
+
+			predtMaxElementInSubTree = this->searchPrev(currantMaxElementInSubTree->str, predtMaxElementInSubTree);
+			if (currant !=predtMaxElementInSubTree) {
+				if (pred->left_child == currant) {
+				pred->left_child = currantMaxElementInSubTree;
+				}
+				else if (pred->right_child == currant) {
+					pred->right_child = currantMaxElementInSubTree;
+				}
+
+				if (currant->left_child) {
+					predtMaxElementInSubTree->right_child = currantMaxElementInSubTree->left_child;
+					currantMaxElementInSubTree->left_child = currant->left_child;
+					currantMaxElementInSubTree->right_child = currant->right_child;
+				}
+				else {
+					currantMaxElementInSubTree->right_child = currant->right_child;
+					predtMaxElementInSubTree->left_child = NULL;
+				}
+			}
+			else {
+				if (pred->left_child == currant) {
+					pred->left_child = currantMaxElementInSubTree;
+				}
+				else if (pred->right_child == currant) {
+					pred->right_child = currantMaxElementInSubTree;
+				}
+				if(currant->left_child)
+				{
+				 currantMaxElementInSubTree->right_child = currant->right_child;
+				}
+			}
+			return currantMaxElementInSubTree;
+		}
+
+
+	}
+
+
+	binaryNode* search(int index){
+		if (this->str == index) {
+			return this;
+		}
+
+		if (this->str > index) {
+			if (this->left_child) {
+				return this->left_child->search(index);
+			}
+			else {
+				return nullptr;
+			}
+		}
+
+		if (this->str < index) {
+			if (this->right_child) {
+				return this->right_child->search(index);
+			}
+			else {
+				return nullptr;
+			}
+	}
+	}
+
+
+	binaryNode* searchPrev(int index,binaryNode* Prev)
+		{
+		if (this->str == index) {
+			return Prev;
+		}
+
+		if (this->str > index) {
+			if (this->left_child) {
+				return this->left_child->searchPrev(index, this);
+			}
+			else {
+				return nullptr;
+			}
+		}
+
+		if (this->str < index) {
+			if (this->right_child) {
+				return this->right_child->searchPrev(index, this);
+			}
+			else {
+				return nullptr;
+			}
+		}
+	}
+
+
+	int defineNode(binaryNode* p){
+		if (p->left_child || p->right_child)
+		{
+			return 1;
+		}
+		else {
+			return 0;
+		}
+	}
+
+	void removeList(binaryNode* currant, binaryNode* pred)
+	{
+			if (pred->left_child == currant)
+			{
+			pred->left_child = nullptr;
+			}
+			else if (pred->right_child == currant) {
+				pred->right_child = nullptr;
+			}
+	}
+
+		binaryNode* findMin()
+	{
+		if (this->left_child)
+		{
+			   return this->left_child->findMin();
+		}
+			else
+			{
+				return this;
+			}
+	}
+
+	int str;
+	String name;
+};
+
+class queue {
+public:
+
+	void pushBack(binaryNode* object)
+	{
+		binaryNode* currant = head;
+		if (currant == nullptr) {
+			this->head= object;
+			this->top= object;
+		}
+		else {
+			this->top->pNext = object;
+			object->pPrev = this->top;
+			this->top = object;
+		}
+		size++;
+	}
+
+	void printFront() {
+		binaryNode* currant = head;
+		while (currant->pNext) {
+			//cout << currant->str << endl;
+			currant = currant->pNext;
+		}
+		//cout << currant->str << endl;
+	}
+
+	binaryNode* pop() {
+		if (size == 1) {
+			binaryNode* object = this->head;
+			this->head = nullptr;
+			this->top = nullptr;
+			(this->size)--;
+			return object;
+		}
+		else
+		{
+			binaryNode* object = this->head;
+			this->head->pNext->pPrev = nullptr;
+			this->head = this->head->pNext;
+			(this->size)--;
+			return object;
+		}
+	}
+
+	queue()
+	{
+		head = nullptr;
+		top = nullptr;
+		size = 0;
+	}
+	int size;
+protected:
+	binaryNode* head;
+	binaryNode* top;
+
+};
+
+void binaryNode::TraverseWidth(TMemo *Memo1)
+{
+	queue qu;
+	qu.pushBack(this);
+	binaryNode* buf;
+
+	while (qu.size!=0)
+	{
+		buf=qu.pop();
+	   //	cout << buf->str << endl;
+	   Memo1->Lines->Add(buf->str);
+		if (buf->left_child) {
+			qu.pushBack(buf->left_child);
+		}
+
+		if (buf->right_child) {
+			qu.pushBack(buf->right_child);
+		}
+
+	}
+
+}
+
+void binaryNode::createTree(TTreeView *TreeView1,TMemo *Memo1)
+{
+queue qu;
+qu.pushBack(this);
+binaryNode* buf;
+int index;
+//Memo1->Lines->Add(TreeView1->Selected->AbsoluteIndex);
+	while (qu.size!=0)
+	{
+	   buf=qu.pop();
+
+	   //Memo1->Lines->Add(buf->str);
+
+		if (buf->left_child) {
+			qu.pushBack(buf->left_child);
+			for(int i=0;i<100;i++)
+			{
+			  if(StrToInt(TreeView1->Items->Item[i]->Text)==buf->str)
+			  {
+			  index=i;
+			  break;
+			  }
+			}
+			TTreeNode *Node1=TreeView1->Items->Item[index];
+			TreeView1->Items->AddChild(Node1,IntToStr(buf->left_child->str));
+		}
+
+		if (buf->right_child) {
+			qu.pushBack(buf->right_child);
+			for(int i=0;i<100;i++)
+			{
+			  if(StrToInt(TreeView1->Items->Item[i]->Text)==buf->str)
+			  {
+			  index=i;
+			  break;
+			  }
+			}
+			TTreeNode *Node1=TreeView1->Items->Item[index];
+			TreeView1->Items->AddChild(Node1,IntToStr(buf->right_child->str));
+		}
+	}
+
+}

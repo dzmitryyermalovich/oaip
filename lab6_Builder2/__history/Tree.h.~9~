@@ -1,0 +1,251 @@
+//---------------------------------------------------------------------------
+
+#ifndef TreeH
+#define TreeH
+//---------------------------------------------------------------------------
+#endif
+#include<String.h>
+class binaryNode {
+public:
+	binaryNode* left_child = nullptr;
+	binaryNode* right_child = nullptr;
+	binaryNode* pNext = nullptr;
+	binaryNode* pPrev = nullptr;
+
+	void print(TMemo *Memo1)
+	{
+	   String st= IntToStr(this->str)+" "+this->name;
+	   Memo1->Lines->Add(st);
+	}
+
+	void TraversePreorder(TMemo *Memo1)
+	{
+
+	this->print(Memo1);
+	if (this->left_child) {
+		this->left_child->TraversePreorder(Memo1);
+	}
+
+	if (this->right_child) {
+		this->right_child->TraversePreorder(Memo1);
+	}
+
+	}
+
+	void TraverseSim(TMemo *Memo1){
+		if (this->left_child) {
+			this->left_child->TraverseSim(Memo1);
+		}
+
+		this->print(Memo1);
+
+		if (this->right_child) {
+			this->right_child->TraverseSim(Memo1);
+		}
+	}
+
+	void TraverseObrat(TMemo *Memo1)
+	{
+	if (this->left_child)
+		{
+			this->left_child->TraverseObrat(Memo1);
+		}
+
+	if (this->right_child)
+		{
+			this->right_child->TraverseObrat(Memo1);
+		}
+		this->print(Memo1);
+	}
+
+	void TraverseWidth();
+
+	binaryNode() {
+		this->str = 0;
+		this->name="";
+	}
+
+	binaryNode(int str,String name) {
+		this->str = str;
+		this->name=name;
+	}
+
+	void set(int str,String name)
+	{
+		this->str = str;
+		this->name=name;
+	}
+
+	void push(binaryNode *ob){
+		if (this->str > ob->str& this->left_child==nullptr) {
+			this->left_child = ob;
+		}
+		else if(this->str > ob->str) {
+			this->left_child->push(ob);
+		}
+
+		if (this->str < ob->str & this->right_child == nullptr) {
+			this->right_child = ob;
+		}
+		else if (this->str < ob->str) {
+			this->right_child->push(ob);
+		}
+	}
+
+	binaryNode* findMax(TMemo *Memo1)
+	{
+		if (this->right_child)
+		{
+			this->right_child->findMax(Memo1);
+		}
+		else {
+		//Memo1->Lines->Add(this->str);
+		return this;
+		}
+	}
+
+	void remove(int index,TMemo *Memo1)
+	{
+
+		int def;
+		binaryNode* currant;
+		binaryNode* pred = this;
+		currant=this->search(index);
+		pred = this->searchPrev(index, pred);
+		def=this->defineNode(currant);
+		binaryNode* currantMaxElementInSubTree=nullptr;
+		binaryNode* predtMaxElementInSubTree=nullptr;
+		if (def == 0) {
+			this->removeList(currant, pred);
+		}
+
+		else if (def == 1) {
+			if (currant->left_child != nullptr) {
+				currantMaxElementInSubTree = currant->left_child->findMax(Memo1);
+				Memo1->Lines->Add(currantMaxElementInSubTree->str);
+			}
+			else {
+				currantMaxElementInSubTree = currant->right_child->findMin();
+			}
+			predtMaxElementInSubTree = currantMaxElementInSubTree;
+
+			//predtMaxElementInSubTree = this->searchPrev(currantMaxElementInSubTree->str, predtMaxElementInSubTree);
+			//Memo1->Lines->Add(currantMaxElementInSubTree->str);
+			if (currant !=predtMaxElementInSubTree) {
+				if (pred->left_child == currant) {
+				//pred->left_child = currantMaxElementInSubTree;
+				//predtMaxElementInSubTree->right_child = currantMaxElementInSubTree->left_child;
+				//currantMaxElementInSubTree->left_child = currant->left_child;
+				//currantMaxElementInSubTree->right_child = currant->right_child;
+				}
+				else if (pred->right_child == currant) {
+					pred->right_child = currantMaxElementInSubTree;
+					predtMaxElementInSubTree->left_child = nullptr;
+					currantMaxElementInSubTree->right_child = currant->right_child;
+					currantMaxElementInSubTree->left_child = nullptr;
+				}
+			}
+			else {
+				if (pred->left_child == currant) {
+					pred->left_child = currantMaxElementInSubTree;
+				}
+				else if (pred->right_child == currant) {
+					pred->right_child = currantMaxElementInSubTree;
+				}
+				if (currantMaxElementInSubTree->right_child) {
+					currantMaxElementInSubTree->right_child = currant->right_child;
+				}
+			}
+		}
+
+
+	}
+
+
+	binaryNode* search(int index){
+		if (this->str == index) {
+			return this;
+		}
+
+		if (this->str > index) {
+			if (this->left_child) {
+				return this->left_child->search(index);
+			}
+			else {
+				return nullptr;
+			}
+		}
+
+		if (this->str < index) {
+			if (this->right_child) {
+				return this->right_child->search(index);
+			}
+			else {
+				return nullptr;
+			}
+	}
+	}
+
+
+	binaryNode* searchPrev(int index,binaryNode* Prev)
+		{
+		if (this->str == index) {
+			return Prev;
+		}
+
+		if (this->str > index) {
+			if (this->left_child) {
+				return this->left_child->searchPrev(index, this);
+			}
+			else {
+				return nullptr;
+			}
+		}
+
+		if (this->str < index) {
+			if (this->right_child) {
+				return this->right_child->searchPrev(index, this);
+			}
+			else {
+				return nullptr;
+			}
+		}
+	}
+
+
+	int defineNode(binaryNode* p){
+		if (p->left_child || p->right_child)
+		{
+			return 1;
+		}
+		else {
+			return 0;
+		}
+	}
+
+	void removeList(binaryNode* currant, binaryNode* pred)
+	{
+			if (pred->left_child == currant)
+			{
+			pred->left_child = nullptr;
+			}
+			else if (pred->right_child == currant) {
+				pred->right_child = nullptr;
+			}
+	}
+
+		binaryNode* findMin()
+	{
+		if (this->left_child)
+		{
+				this->left_child->findMin();
+		}
+			else
+			{
+				return this;
+			}
+	}
+
+	int str;
+	String name;
+};

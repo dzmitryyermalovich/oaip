@@ -1,0 +1,107 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Unit1.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+#include<Vcl.h>
+#include "Tree.h"
+TForm1 *Form1;
+int deep=0;
+binaryNode *root=new binaryNode();
+//---------------------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::FormCreate(TObject *Sender)
+{
+StringGrid1->Cells[1][0]=80;
+StringGrid1->Cells[1][1]=49;
+StringGrid1->Cells[1][2]=57;
+StringGrid1->Cells[1][3]=11;
+StringGrid1->Cells[1][4]=13;
+StringGrid1->Cells[1][5]=12;
+StringGrid1->Cells[1][6]=91;
+StringGrid1->Cells[1][7]=85;
+StringGrid1->Cells[1][8]=100;
+StringGrid1->Cells[1][9]=84;
+
+StringGrid1->Cells[0][0]="Dima";
+StringGrid1->Cells[0][1]="Naruto";
+StringGrid1->Cells[0][2]="Saske";
+StringGrid1->Cells[0][3]="Itach";
+StringGrid1->Cells[0][4]="Sakura";
+StringGrid1->Cells[0][5]="Igor";
+StringGrid1->Cells[0][6]="Egor";
+StringGrid1->Cells[0][7]="Vasua";
+StringGrid1->Cells[0][8]="Tima";
+StringGrid1->Cells[0][9]="Ales";
+
+root->set(StrToInt(StringGrid1->Cells[1][0]),StringGrid1->Cells[0][0]);
+for(int i=1;i<StringGrid1->RowCount;i++)
+{
+   binaryNode *buf=new binaryNode();
+   buf->set(StrToInt(StringGrid1->Cells[1][i]),StringGrid1->Cells[0][i]);
+   root->push(buf);
+}
+
+
+
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+
+int index=StrToInt(Edit1->Text);
+index-=1;
+int number=StrToInt(StringGrid1->Cells[1][index]);
+String name=StringGrid1->Cells[0][index];
+binaryNode *buf=new binaryNode(number,name);
+
+switch(RadioGroup1->ItemIndex){
+
+   case 1:
+	if(deep==0)
+	{
+	   root->set(number,name);
+	   deep++;
+	}
+	else
+	{
+	 root->push(buf);
+	}
+	break;
+
+
+   case 2:
+	root->TraversePreorder(Memo1);
+	break;
+
+}
+
+Edit1->Clear();
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Button2Click(TObject *Sender)
+{
+  Memo1->Clear();
+  //root->TraversePreorder(Memo1);
+  root->TraverseWidth(Memo1);
+  //root->TraverseSim(Memo1);
+  //root->TraverseObrat(Memo1);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button3Click(TObject *Sender)
+{
+int index=StrToInt(Edit1->Text);
+root->remove(index,Memo1);
+Edit1->Clear();
+}
+//---------------------------------------------------------------------------
+

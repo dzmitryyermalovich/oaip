@@ -1,0 +1,111 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 516
+  ClientWidth = 764
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 352
+    Top = 445
+    Width = 28
+    Height = 13
+    Caption = 'Index'
+  end
+  object Label2: TLabel
+    Left = 240
+    Top = 296
+    Width = 3
+    Height = 13
+  end
+  object StringGrid1: TStringGrid
+    Left = 384
+    Top = 32
+    Width = 153
+    Height = 208
+    ColCount = 2
+    RowCount = 13
+    TabOrder = 0
+  end
+  object Memo1: TMemo
+    Left = 48
+    Top = 32
+    Width = 153
+    Height = 208
+    TabOrder = 1
+  end
+  object RadioGroup1: TRadioGroup
+    Left = 384
+    Top = 270
+    Width = 153
+    Height = 121
+    Items.Strings = (
+      'Push Node'
+      'Remove  Node'
+      'print direct')
+    TabOrder = 2
+  end
+  object Button1: TButton
+    Left = 200
+    Top = 432
+    Width = 83
+    Height = 25
+    Caption = 'Calculate'
+    TabOrder = 3
+    OnClick = Button1Click
+  end
+  object Edit1: TEdit
+    Left = 408
+    Top = 434
+    Width = 97
+    Height = 21
+    TabOrder = 4
+  end
+  object Button2: TButton
+    Left = 608
+    Top = 432
+    Width = 75
+    Height = 25
+    Caption = 'print'
+    TabOrder = 5
+    OnClick = Button2Click
+  end
+  object Button3: TButton
+    Left = 608
+    Top = 376
+    Width = 75
+    Height = 25
+    Caption = 'Remove'
+    TabOrder = 6
+    OnClick = Button3Click
+  end
+  object TreeView1: TTreeView
+    Left = 48
+    Top = 280
+    Width = 235
+    Height = 146
+    Indent = 19
+    TabOrder = 7
+    OnChange = TreeView1Change
+    Items.NodeData = {
+      0301000000220000000000000000000000FFFFFFFFFFFFFFFF00000000000000
+      0000000000010238003000}
+  end
+  object Button4: TButton
+    Left = 608
+    Top = 312
+    Width = 75
+    Height = 25
+    Caption = 'Full fill tree'
+    TabOrder = 8
+  end
+end
