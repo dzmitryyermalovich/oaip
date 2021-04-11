@@ -13,7 +13,6 @@
 TForm1 *Form1;
 int deep=0;
 binaryNode *root=new binaryNode();
-FindDaughter arr;
 binaryNode *NewElement;
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
@@ -248,12 +247,6 @@ Memo1->Clear();
 binaryNode *buf=root->search(StrToInt(Edit1->Text));
 Memo1->Lines->Add(buf->str);
 Memo1->Lines->Add(buf->name);
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::Button5Click(TObject *Sender)
-{
- arr.calculateDaughter(Memo1,root);
 }
 //---------------------------------------------------------------------------
 

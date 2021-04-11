@@ -89,22 +89,18 @@ public:
 	}
 
 	void push(binaryNode *ob){
-		binaryNode *buf=search(ob->str);
-		if(buf==nullptr)
-		{
-			if (this->str > ob->str& this->left_child==nullptr) {
-				this->left_child = ob;
-			}
-			else if(this->str > ob->str) {
-				this->left_child->push(ob);
-			}
+		if (this->str > ob->str& this->left_child==nullptr) {
+			this->left_child = ob;
+		}
+		else if(this->str > ob->str) {
+			this->left_child->push(ob);
+		}
 
-			if (this->str < ob->str & this->right_child == nullptr) {
-				this->right_child = ob;
-			}
-			else if (this->str < ob->str) {
-				this->right_child->push(ob);
-			}
+		if (this->str < ob->str & this->right_child == nullptr) {
+			this->right_child = ob;
+		}
+		else if (this->str < ob->str) {
+			this->right_child->push(ob);
 		}
 	}
 
@@ -154,60 +150,59 @@ public:
 		binaryNode* currant;
 		binaryNode* pred = this;
 		currant=this->search(index);
-		if(currant!=nullptr&currant!=this)
-		{
-			pred = this->searchPrev(index, pred);
-			def=this->defineNode(currant);
-			binaryNode* currantMaxElementInSubTree=nullptr;
-			binaryNode* predtMaxElementInSubTree=nullptr;
-			if (def == 0) {
-				this->removeList(currant, pred);
-				return currantMaxElementInSubTree;
-			}
+		pred = this->searchPrev(index, pred);
+		def=this->defineNode(currant);
+		binaryNode* currantMaxElementInSubTree=nullptr;
+		binaryNode* predtMaxElementInSubTree=nullptr;
+		if (def == 0) {
+			this->removeList(currant, pred);
+			return currantMaxElementInSubTree;
+		}
 
-			else if (def == 1) {
-				if (currant->left_child != nullptr) {
-					currantMaxElementInSubTree = currant->left_child->findMax(Memo1);
+		else if (def == 1) {
+			if (currant->left_child != nullptr) {
+				currantMaxElementInSubTree = currant->left_child->findMax(Memo1);
+			}
+			else {
+				currantMaxElementInSubTree = currant->right_child->findMin();
+			}
+			predtMaxElementInSubTree = currantMaxElementInSubTree;
+
+			predtMaxElementInSubTree = this->searchPrev(currantMaxElementInSubTree->str, predtMaxElementInSubTree);
+			if (currant !=predtMaxElementInSubTree) {
+				if (pred->left_child == currant) {
+				pred->left_child = currantMaxElementInSubTree;
+				}
+				else if (pred->right_child == currant) {
+					pred->right_child = currantMaxElementInSubTree;
+				}
+
+				if (currant->left_child) {
+					predtMaxElementInSubTree->right_child = currantMaxElementInSubTree->left_child;
+					currantMaxElementInSubTree->left_child = currant->left_child;
+					currantMaxElementInSubTree->right_child = currant->right_child;
 				}
 				else {
-					currantMaxElementInSubTree = currant->right_child->findMin();
+					currantMaxElementInSubTree->right_child = currant->right_child;
+					predtMaxElementInSubTree->left_child = nullptr;
 				}
-				predtMaxElementInSubTree = currantMaxElementInSubTree;
-
-				predtMaxElementInSubTree = this->searchPrev(currantMaxElementInSubTree->str, predtMaxElementInSubTree);
-				if (currant !=predtMaxElementInSubTree) {
-					if (pred->left_child == currant) {
+			}
+			else {
+				if (pred->left_child == currant) {
 					pred->left_child = currantMaxElementInSubTree;
-					}
-					else if (pred->right_child == currant) {
-						pred->right_child = currantMaxElementInSubTree;
-					}
-
-					if (currant->left_child) {
-						predtMaxElementInSubTree->right_child = currantMaxElementInSubTree->left_child;
-						currantMaxElementInSubTree->left_child = currant->left_child;
-						currantMaxElementInSubTree->right_child = currant->right_child;
-					}
-					else {
-						currantMaxElementInSubTree->right_child = currant->right_child;
-						predtMaxElementInSubTree->left_child = nullptr;
-					}
 				}
-				else {
-					if (pred->left_child == currant) {
-						pred->left_child = currantMaxElementInSubTree;
-					}
-					else if (pred->right_child == currant) {
-						pred->right_child = currantMaxElementInSubTree;
-					}
-					if(currant->left_child)
-					{
-					 currantMaxElementInSubTree->right_child = currant->right_child;
-					}
+				else if (pred->right_child == currant) {
+					pred->right_child = currantMaxElementInSubTree;
 				}
-				return currantMaxElementInSubTree;
+				if(currant->left_child)
+				{
+				 currantMaxElementInSubTree->right_child = currant->right_child;
+				}
 			}
-	  }
+			return currantMaxElementInSubTree;
+		}
+
+
 	}
 
 
@@ -556,34 +551,3 @@ binaryNode* binaryNode::makeBalance(binaryNode *root)
 	return root;
 
 }
-
-class FindDaughter:public binaryNode
-{
-public:
-void calculateDaughter(TMemo *Memo1,binaryNode* root) {
-	queue qu;
-	qu.pushBack(root);
-	binaryNode* buf;
-	int kol=0, met=0;
-	while (qu.size != 0)
-	{
-		buf = qu.pop();
-		if (buf->left_child) {
-			qu.pushBack(buf->left_child);
-			met++;
-		}
-
-		if (buf->right_child) {
-			qu.pushBack(buf->right_child);
-			met++;
-		}
-		if (met == 2) {
-			kol++;
-		}
-		met = 0;
-	}
-	String stroka="kol = "+IntToStr(kol);
-	Memo1->Clear();
-	Memo1->Lines->Add(stroka);
-}
-};

@@ -19,12 +19,18 @@ public:
 	void TraverseSim();
 	void TraverseObrat();
 	void TraverseWidth();
-	void push(binaryNode *ob);
+	void push(binaryNode* root, binaryNode *ob);
 	void remove(int index);
+	void calculateDaught();
 	binaryNode* search(int index);
 	binaryNode* searchPrev(int index,binaryNode *p);
 	int defineNode(binaryNode* p);
 	void removeList(binaryNode* currant, binaryNode* pred);
+	int hightOfTree();
+	int defineBalance();
+	binaryNode* makeBalance(binaryNode* root);
+	binaryNode* rightTern(binaryNode* root);
+	binaryNode* leftTern(binaryNode* root);
 	binaryNode* findMax();
 	int str;
 	int sizeOfSubStr = 0;
@@ -189,7 +195,7 @@ void binaryNode::remove(int index) {
 		predtMaxElementInSubTree = currantMaxElementInSubTree;
 		predtMaxElementInSubTree = this->searchPrev(currantMaxElementInSubTree->str, predtMaxElementInSubTree);
         
-		if (currant !=predtMaxElementInSubTree) {
+		if (currant != predtMaxElementInSubTree) {
 			if (pred->left_child == currant) {
 				pred->left_child = currantMaxElementInSubTree;
 			}
@@ -197,9 +203,16 @@ void binaryNode::remove(int index) {
 				pred->right_child = currantMaxElementInSubTree;
 			}
 
-			predtMaxElementInSubTree->right_child = currantMaxElementInSubTree->left_child;
-			currantMaxElementInSubTree->left_child = currant->left_child;
-			currantMaxElementInSubTree->right_child = currant->right_child;
+			if (currant->left_child) {
+				predtMaxElementInSubTree->right_child = currantMaxElementInSubTree->left_child;
+				currantMaxElementInSubTree->left_child = currant->left_child;
+				currantMaxElementInSubTree->right_child = currant->right_child;
+			}
+			else {
+				currantMaxElementInSubTree->right_child = currant->right_child;
+				predtMaxElementInSubTree->left_child = NULL;
+			}
+
 		}
 		else {
 			if (pred->left_child == currant) {
@@ -208,7 +221,10 @@ void binaryNode::remove(int index) {
 			else if (pred->right_child == currant) {
 				pred->right_child = currantMaxElementInSubTree;
 			}
-			if (currantMaxElementInSubTree->right_child) {
+			//currantMaxElementInSubTree->right_child = currant->right_child;
+			//currantMaxElementInSubTree->left_child = currant->left_child;
+			if (currant->left_child)
+			{
 				currantMaxElementInSubTree->right_child = currant->right_child;
 			}
 		}
@@ -298,66 +314,196 @@ void binaryNode::calculateNumberOfElements()
 
 }
 
-void binaryNode::push(binaryNode* ob) {
+void binaryNode::push(binaryNode* root,binaryNode* ob) {
 
 	//binaryNode* currant = this;
 	if (this->str > ob->str& this->left_child==nullptr) {
 		this->left_child = ob;
 	}
 	else if(this->str > ob->str) {
-		this->left_child->push(ob);
+		this->left_child->push(root,ob);
 	}
 
 	if (this->str < ob->str & this->right_child == nullptr) {
 		this->right_child = ob;
 	}
 	else if (this->str < ob->str) {
-		this->right_child->push(ob);
+		this->right_child->push(root,ob);
+	}
+}
+
+int binaryNode::hightOfTree() {
+	
+	if (this == nullptr) {
+		return 0;
+	}
+	int hLeft, hRight;
+	hLeft = this->left_child->hightOfTree();
+	hRight = this->right_child->hightOfTree();
+
+	if (hLeft > hRight) {
+		return hLeft + 1;
+	}
+	else 
+	{
+		return hRight + 1;
+	}
+}
+
+binaryNode* binaryNode::leftTern(binaryNode* root) {
+	binaryNode* pPrev = root->searchPrev(this->str, nullptr);
+
+	binaryNode* newNode = this->right_child;
+	this->right_child = newNode->left_child;
+	newNode->left_child = this;
+
+	if (pPrev == nullptr) {
+		return newNode;
+	}
+	else {
+		if (pPrev->left_child == this) {
+			pPrev->left_child = newNode;
+		}
+		else if (pPrev->right_child == this) {
+			pPrev->right_child = newNode;
+		}
+		return newNode;
 	}
 
+}
+
+binaryNode* binaryNode::rightTern(binaryNode* root) {
+	binaryNode* pPrev = root->searchPrev(this->str, nullptr);
+
+	binaryNode* newNode = this->left_child;
+	this->left_child = newNode->right_child;
+	newNode->right_child = this;
+
+
+	if (pPrev == nullptr) {
+		return newNode;
+	}
+	else {
+		if (pPrev->left_child == this) {
+			pPrev->left_child = newNode;
+		}
+		else if (pPrev->right_child == this) {
+			pPrev->right_child = newNode;
+		}
+		return newNode;
+	}
+}
+
+int binaryNode::defineBalance() {
+	int n1, n2;
+	n1 = this->left_child->hightOfTree();
+	n2 = this->right_child->hightOfTree();
+	return n2-n1;
+
+}
+
+binaryNode* binaryNode::makeBalance(binaryNode *root) {
+	int n1 = root->defineBalance();
+	int n2;
+	if (abs(n1) == 2)
+	{ 
+		if(n1<0)
+		{
+			n2 = root->left_child->defineBalance();
+			if (n2 < 0) {
+				root = root->rightTern(root);
+				return root;
+			}
+			else {
+				root->left_child->leftTern(root);
+				root = root->rightTern(root);
+				return root;
+			}
+		}
+		else {
+			int n2 = root->right_child->defineBalance();
+			if (n2 > 0) {
+				root = root->leftTern(root);
+				return root;
+			}
+			else {
+				root->right_child->rightTern(root);
+				root = root->leftTern(root);
+				return root;
+			}
+
+		}
+	}
+	return root;
+}
+
+void binaryNode::calculateDaught() {
+
+	queue qu;
+	qu.pushBack(this);
+	binaryNode* buf;
+	int kol=0, met=0;
+	while (qu.size != 0)
+	{
+		buf = qu.pop();
+		//cout << buf->str << endl;
+		if (buf->left_child) {
+			qu.pushBack(buf->left_child);
+			met++;
+		}
+
+		if (buf->right_child) {
+			qu.pushBack(buf->right_child);
+			met++;
+		}
+		if (met == 2) {
+			kol++;
+		}
+		met = 0;
+	}
+	cout <<"\nkol = "<< kol << endl;
 }
 
 int main()
 {
 	
+
 	binaryNode* root = new binaryNode(60);
-	binaryNode* node1_1 = new binaryNode(35);
-	binaryNode* node1_2 = new binaryNode(42);
-	binaryNode* node2_1 = new binaryNode(21);
-	binaryNode* node2_2 = new binaryNode(17);
-	binaryNode* node3_1 = new binaryNode(11);
-	binaryNode* node3_2 = new binaryNode(30);
-	binaryNode* node4_1 = new binaryNode(25);
-	binaryNode* node4_2 = new binaryNode(23);
-	binaryNode* d= new binaryNode(22);
-	/*
-	binaryNode* a = new binaryNode(24);
-	binaryNode* b = new binaryNode(80);
-	binaryNode* c = new binaryNode(18);
-	binaryNode* d = new binaryNode(66);
-	binaryNode* f = new binaryNode(95);
-	binaryNode* g = new binaryNode(70);
-	*/
-	root->push(node1_1);
-	root->push(node1_2);
-	root->push(node2_1);
-	root->push(node2_2);
-	root->push(node3_1);
-	root->push(node3_2);
-	root->push(node4_1);
-	root->push(node4_2);
-	root->push(d);
-	//root->push(a);
-	//root->push(b);
-	//root->push(c);
-	//root->push(d);
-	//root->push(f);
-	//root->push(g);
-	//root->remove(17);
-	binaryNode* a = root->left_child->left_child->right_child;
-	cout << a->str << endl;
-	a->calculateNumberOfElements();
-	cout <<"\n\n" <<a->sizeOfSubStr << endl;
-	//cout << root->sizeOfSubStr << endl;
-	//root->TraversePreorder();
+	binaryNode* a = new binaryNode(35);
+	binaryNode* b = new binaryNode(42);
+	binaryNode* c = new binaryNode(21);
+	binaryNode* d = new binaryNode(17);
+	binaryNode* g = new binaryNode(95);
+	binaryNode* h = new binaryNode(23);
+	binaryNode* i = new binaryNode(16);
+	binaryNode* k = new binaryNode(90);
+	binaryNode* l = new binaryNode(100);
+	binaryNode* m = new binaryNode(18);
+	root->push(root, a);
+	//root = root->makeBalance(root);
+
+	root->push(root, b);
+	//root = root->makeBalance(root);
+
+	root->push(root, c);
+	//root = root->makeBalance(root);
+
+	root->push(root, d);
+	//root = root->makeBalance(root);
+
+	root->push(root, g);
+	//root = root->makeBalance(root);
+
+	root->push(root, h);
+	//root = root->makeBalance(root);
+
+	root->push(root, i);
+	//root = root->makeBalance(root);
+	
+	root->push(root, k);
+	root->push(root, l);
+	root->push(root, m);
+
+	root->TraversePreorder();
+	root->calculateDaught();
 }
