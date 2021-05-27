@@ -1,0 +1,61 @@
+//---------------------------------------------------------------------------
+
+#ifndef hashTableH
+#define hashTableH
+//---------------------------------------------------------------------------
+#endif
+#include<String.h>
+template<typename T1, typename T2>
+class Node {
+public:
+	T1 key;
+	T2 info;
+	Node* head;
+	Node* top;
+	Node* pNext;
+	Node* pPrev;
+
+	Node(T1 key, T2 info,Node* pPrev) {
+		this->key = key;
+		this->info = info;
+		this->pNext = nullptr;
+		this->pPrev = pPrev;
+	}
+
+	void push(T1 keyInput, T2 infoInput) {
+		if (this->head == NULL) {
+			Node<T1,T2>* newNode = new Node<T1, T2>(keyInput, infoInput,top);
+			top = newNode;
+			head = newNode;
+		}
+		else {
+			Node<T1, T2>* newNode = new Node<T1, T2>(keyInput, infoInput, top);
+			top->pNext = newNode;
+			top = newNode;
+		}
+	}
+	Node() {
+		top = NULL;
+		head = NULL;
+	}
+
+	String print()
+	{
+		Node* currant = head;
+		String str="";
+		if (currant != NULL) {
+			while (currant->pNext != NULL) {
+				str+= currant->key+" ";
+				currant = currant->pNext;
+			}
+			str+= currant->key+" ";
+		}
+		return str;
+	}
+
+
+};
+
+int h1(int key, int sizeOfHashTable) {
+	return (key % sizeOfHashTable);
+}
